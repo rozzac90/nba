@@ -1,11 +1,10 @@
 
-
 from new_nba import enums
 from new_nba.utils import clean_locals
 from new_nba.endpoints.baseendpoint import BaseEndpoint
 
 
-class Common(BaseEndpoint):
+class Draft(BaseEndpoint):
     
     def draftcombinedrillresults(self, LeagueID=enums.LeagueID.Default, SeasonYear='2016-17'):
         """
