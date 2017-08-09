@@ -9,12 +9,12 @@ class APIClient(BaseClient):
         super(APIClient, self).__init__()
 
         self.boxscores = endpoints.Boxscores(self)
-        self.common = endpoints.Account(self)
-        self.draft = endpoints.MarketData(self)
-        self.events = endpoints.ReferenceData(self)
-        self.homepage = endpoints.Reporting(self)
-        self.misc = endpoints.
-        self.playbyplay = endpoints.
-        self.player = endpoints.
-        self.scoreboard = endpoints.
-        self.team = endpoints.
+        self.common = endpoints.Common(self)
+        self.draft = endpoints.Draft(self)
+        self.events = endpoints.Events(self)
+        self.homepage = endpoints.Homepage(self)
+        self.misc = endpoints.Misc
+        self.playbyplay = endpoints.PlayByPlay
+        self.player = endpoints.Player
+        self.scoreboard = endpoints.Scoreboard
+        self.team = endpoints.Team

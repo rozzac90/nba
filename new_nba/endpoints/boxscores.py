@@ -1,6 +1,4 @@
 
-import datetime
-
 from new_nba import enums
 from new_nba.utils import clean_locals
 from new_nba.endpoints.baseendpoint import BaseEndpoint

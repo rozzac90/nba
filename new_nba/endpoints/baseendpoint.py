@@ -14,11 +14,9 @@ class BaseEndpoint(object):
 
     def request(self, method, params={}, data={}, session=None):
         """
-        :param url: NBA url to request.
         :param method: NBA API method to be used.
         :param params: Params to be used in request.
         :param data: data to be sent in request body.
-        :param target: target to get from returned data, if none returns full response.
         :param session: Requests session to be used, reduces latency.
         """
         session = session or self.client.session
@@ -34,8 +32,8 @@ class BaseEndpoint(object):
         """
         Parse data received from stats.nba.com endpoints
 
-        :param json_data: data returned from requests to stats.nba.com endpoint.
-        :type json_data: JSON
+        :param response_json: data returned from requests to stats.nba.com endpoint.
+        :type response_json: JSON
         :param idx_val: the index to retrieve from the returned data.
         :type idx_val: int
         :param result_name: json key to target for parsing results.
