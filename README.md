@@ -1,2 +1,2 @@
-# new_nba
-Python Wrapper for NBA Hidden API
+# nba
+Python wrapper for NBA Hidden API.

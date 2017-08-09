@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 
-from new_nba.utils import check_status_code
+from nba.utils import check_status_code
 
 
 class BaseEndpoint(object):

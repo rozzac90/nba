@@ -1,8 +1,8 @@
 
 import pandas as pd
 
-from new_nba.utils import clean_locals
-from new_nba.endpoints.baseendpoint import BaseEndpoint
+from nba.utils import clean_locals
+from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class Events(BaseEndpoint):

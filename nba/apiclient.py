@@ -1,6 +1,6 @@
 
-from new_nba.baseclient import BaseClient
-from new_nba import endpoints
+from nba.baseclient import BaseClient
+from nba import endpoints
 
 
 class APIClient(BaseClient):
