@@ -4,7 +4,7 @@ from new_nba.utils import clean_locals
 from new_nba.endpoints.baseendpoint import BaseEndpoint
 
 
-class Draft(BaseEndpoint):
+class Homepage(BaseEndpoint):
 
     def homepageleaders(self, idx_data, LeagueID=enums.LeagueID.Default, StatCategory=enums.StatCategory.Default, Season=enums.Season.Default,
                         SeasonType=enums.SeasonType.Default, PlayerOrTeam=enums.PlayerOrTeam.Default,
