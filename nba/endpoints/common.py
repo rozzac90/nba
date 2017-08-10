@@ -39,7 +39,7 @@ class Common(BaseEndpoint):
         endpoint = 'commonallplayers'
         r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
-        return r
+        return df
     
     def player_info(self, PlayerID):
         """

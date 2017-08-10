@@ -21,6 +21,7 @@ class BaseEndpoint(object):
         """
         session = session or self.client.session
         request_url = '%s%s' % (self.client.url, method)
+        print(request_url)
         response = session.request(
             'GET', request_url, params=params, data=json.dumps(data), headers=self.client.headers
         )
