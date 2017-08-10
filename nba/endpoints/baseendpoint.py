@@ -30,7 +30,7 @@ class BaseEndpoint(object):
             )
         print(response.url)
         # check_status_code(response)
-        return response
+        return response.json()
 
     @staticmethod
     def process_response(response_json, idx_val, result_name):
