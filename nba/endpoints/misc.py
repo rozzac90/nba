@@ -8,18 +8,18 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 class Misc(BaseEndpoint):
     
-    def playoffpicture(self, idx_data, SeasonID=enums.Season.Default, LeagueID=enums.LeagueID.Default):
+    def play_off_picture(self, idx_data, league_id=enums.LeagueID.Default, season_id=enums.Season.Default):
         """
         Get information on how current playoff matchups and conference standings are.
     
         :param idx_data: the index to retrieve data from json.
         :type idx_data: int
-        :param LeagueID: league to filter for.
-        :type LeagueID: nba.nba.bin.enums.LeagueID
-        :param SeasonID: Season for which to get stat leaders.
-        :type SeasonID: nba.nba.bin.enums.Season
+        :param league_id: league to filter for.
+        :type league_id: nba.nba.bin.enums.LeagueID
+        :param season_id: Season for which to get stat leaders.
+        :type season_id: nba.nba.bin.enums.Season
         :returns: A view of playoff or standings, as show in idx_data table breakdown below.
-        :rtype: Dataframe
+        :rtype: DataFrame
     
         ========   =======================   ==================================================================
         idx_data           Name                                   Description
@@ -39,16 +39,16 @@ class Misc(BaseEndpoint):
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
-    def videoStatus(self, GameDate=datetime.datetime.today().strftime('%Y-%m-%d'), LeagueID=enums.LeagueID.Default):
+    def video_status(self, game_date=datetime.datetime.today().strftime('%Y-%m-%d'), league_id=enums.LeagueID.Default):
         """
         Breakdown of which games are available on video on a given date.
     
-        :param GameDate: date to check.
-        :type GameDate: str('%Y-%m-%d')
-        :param LeagueID: league to filter for.
-        :type LeagueID: nba.nba.bin.enums.LeagueID
+        :param game_date: date to check.
+        :type game_date: str('%Y-%m-%d')
+        :param league_id: league to filter for.
+        :type league_id: nba.nba.bin.enums.LeagueID
         :returns: games on the given date and whether they are available on video.
-        :rtype: Dataframe
+        :rtype: DataFrame
     
         """
         params = clean_locals(locals())

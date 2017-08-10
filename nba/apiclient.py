@@ -13,8 +13,8 @@ class APIClient(BaseClient):
         self.draft = endpoints.Draft(self)
         self.events = endpoints.Events(self)
         self.homepage = endpoints.Homepage(self)
-        self.misc = endpoints.Misc
-        self.playbyplay = endpoints.PlayByPlay
-        self.player = endpoints.Player
-        self.scoreboard = endpoints.Scoreboard
-        self.team = endpoints.Team
+        self.misc = endpoints.Misc(self)
+        self.playbyplay = endpoints.PlayByPlay(self)
+        self.player = endpoints.Player(self)
+        self.scoreboard = endpoints.Scoreboard(self)
+        self.team = endpoints.Team(self)
