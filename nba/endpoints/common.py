@@ -6,34 +6,34 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 class Common(BaseEndpoint):
 
-    def team_years(self, LeagueID=enums.LeagueID.Default):
+    def team_years(self, league_id=enums.LeagueID.Default):
         """
         Get information on when teams were playing in the league.
-    
-        :param LeagueID: define league to look at, nba.
-        :type LeagueID: nba.nba.bin.enums.LeagueID
+        
+        :param league_id: define league to look at, nba.
+        :type league_id: nba.nba.bin.enums.LeagueID
         :returns: breakdown of min and max year playing in nba by team.
-    
+        
         """
         params = clean_locals(locals())
         endpoint = 'commonTeamYears'
         r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
-        return r
+        return df
     
-    def all_players(self, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default, IsOnlyCurrentSeason=1):
+    def all_players(self, league_id=enums.LeagueID.Default, season=enums.Season.Default, is_only_current_season=1):
         """
         Get individual player details.
-    
-        :param LeagueID: league to retrieve data for.
-        :type LeagueID: str
-        :param Season: Season for which we require data.
-        :type Season: str('%Y-%y')
-        :param IsOnlyCurrentSeason: define whether to only get players on a roster in current season.
-        :type IsOnlyCurrentSeason: bool(1|0)
+        
+        :param league_id: league to retrieve data for.
+        :type league_id: str
+        :param season: Season for which we require data.
+        :type season: str('%Y-%y')
+        :param is_only_current_season: define whether to only get players on a roster in current season.
+        :type is_only_current_season: bool(1|0)
         :returns: player information.
         :rtype: Dataframe
-    
+        
         """
         params = clean_locals(locals())
         endpoint = 'commonallplayers'
@@ -41,15 +41,15 @@ class Common(BaseEndpoint):
         df = self.process_response(r, 0, 'resultSets')
         return df
     
-    def player_info(self, PlayerID):
+    def player_info(self, player_id):
         """
         Get detailed information for a player.
-    
-        :param PlayerID: id of player to get information for.
-        :type PlayerID: int
+        
+        :param player_id: id of player to get information for.
+        :type player_id: int
         :returns: detailed player information.
         :rtype: Dataframe
-    
+        
         """
         params = clean_locals(locals())
         endpoint = 'commonplayerinfo'
@@ -57,14 +57,14 @@ class Common(BaseEndpoint):
         df = self.process_response(r, 0, 'resultSets')
         return df
 
-    def play_off_series(self, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default):
+    def play_off_series(self, league_id=enums.LeagueID.Default, season=enums.Season.Default):
         """
         Get playoff series match ups for a given season.
     
-        :param LeagueID: league to retrieve data for.
-        :type LeagueID: str
-        :param Season: Season for which we require data.
-        :type Season: str('%Y-%y')
+        :param league_id: league to retrieve data for.
+        :type league_id: str
+        :param season: Season for which we require data.
+        :type season: str('%Y-%y')
         :returns: match up by home/away team id and series id.
         :rtype: Dataframe
     
@@ -75,14 +75,14 @@ class Common(BaseEndpoint):
         df = self.process_response(r, 0, 'resultSets')
         return df
     
-    def team_roster(self, TeamID, Season=enums.Season.Default):
+    def team_roster(self, team_id, season=enums.Season.Default):
         """
         Get team roster breakdown.
     
-        :param TeamID:
-        :type TeamID: int
-        :param Season: season for which we require data.
-        :type Season: str('%Y-%y')
+        :param team_id: id of the team whose roster to retrieve
+        :type team_id: int
+        :param season: season for which we require data.
+        :type season: str('%Y-%y')
         :returns: roster breakdown of player details.
         :rtype: Dataframe
     
@@ -93,18 +93,19 @@ class Common(BaseEndpoint):
         df = self.process_response(r, 0, 'resultSets')
         return df
 
-    def team_info(self, TeamID, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default, SeasonType=enums.SeasonType.Default):
+    def team_info(self, team_id, league_id=enums.LeagueID.Default, season=enums.Season.Default,
+                  season_type=enums.SeasonType.Default):
         """
         Get high level team data.
     
-        :param TeamID: id of team for which to get data.
-        :type TeamID: int
-        :param LeagueID: id of league in which team plays.
-        :type LeagueID: nba.nba.bin.enums.LeagueID
-        :param Season: season for which we require data.
-        :type Season: str('%Y-%y')
-        :param SeasonType: playoff or regular season specification.
-        :type SeasonType: nba.nba.bin.enums.SeasonType
+        :param team_id: id of team for which to get data.
+        :type team_id: int
+        :param league_id: id of league in which team plays.
+        :type league_id: nba.nba.bin.enums.LeagueID
+        :param season: season for which we require data.
+        :type season: str('%Y-%y')
+        :param season_type: playoff or regular season specification.
+        :type season_type: nba.nba.bin.enums.SeasonType
         :returns: team information and season record.
         :rtype: Dataframe
     

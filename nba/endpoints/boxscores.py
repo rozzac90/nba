@@ -6,8 +6,8 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 class Boxscores(BaseEndpoint):
 
-    def boxscore_advanced(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
-                          StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
+    def advanced(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
+                 StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
         """
         Get advanced box score stats for a given game.
     
@@ -42,8 +42,8 @@ class Boxscores(BaseEndpoint):
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
-    def boxscorefourfactors(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
-                            StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
+    def four_factors(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
+                     StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
         """
         Get four factors stats for a given game.
     
@@ -78,8 +78,8 @@ class Boxscores(BaseEndpoint):
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
-    def boxscoremisc(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
-                     StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
+    def miscellaneous(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
+                      StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
         """
         Get miscellaneous stats for a given game.
     
@@ -114,8 +114,8 @@ class Boxscores(BaseEndpoint):
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
-    def boxscorescoring(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
-                        StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
+    def scoring(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
+                StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
         """
         Get scoring stats for a given game.
     
@@ -150,8 +150,8 @@ class Boxscores(BaseEndpoint):
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
-    def boxscoretraditional(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
-                            StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
+    def traditional(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
+                    StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
         """
         Get traditional box score stats for a given game.
     
@@ -187,8 +187,8 @@ class Boxscores(BaseEndpoint):
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
-    def boxscoreusage(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
-                      StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
+    def usage(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
+              StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
         """
         Get usage stats for a given game.
     
@@ -224,8 +224,8 @@ class Boxscores(BaseEndpoint):
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
-    def boxscoresummary(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
-                        StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
+    def summary(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
+                StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
         """
         Get high level game summary stats for a given game.
     
@@ -267,8 +267,8 @@ class Boxscores(BaseEndpoint):
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
-    def boxscoreplayertrack(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
-                            StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
+    def player_tracking(self, GameID, idx_data, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default,
+                        StartRange=enums.StartRange.Default, EndRange=enums.EndRange.Default, RangeType=enums.RangeType.Default):
         """
         Get player tracking box score stats for a given game.
     

@@ -37,7 +37,12 @@ def clean_locals(params):
     :returns: cleaned locals dict to use as params for functions
     :rtype: dict
     """
-    return dict((k, v) for k, v in params.items() if v is not None and k not in ['self', 'session', 'idx_data'])
+    return dict((clean_param_key(k), v)
+                for k, v in params.items() if v is not None and k not in ['self', 'session', 'idx_data'])
+
+
+def clean_param_key(key):
+    return ''.join([k.upper() if k == 'id' else k.title() for k in key.split('_')])
 
 
 def check_status_code(response, codes=None):

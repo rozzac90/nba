@@ -1,11 +1,13 @@
 
 import requests
+from requests.adapters import HTTPAdapter
 
 
 class BaseClient(object):
     def __init__(self):
         self.url = 'http://stats.nba.com/stats/'
         self.session = requests.Session()
+        self.session.mount('http://stats.nba.com', HTTPAdapter(max_retries=1))
         self.current_season = '2016-17'
 
     @property
