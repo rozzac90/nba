@@ -20,7 +20,7 @@ class Draft(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'draftcombinedrillresults'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -38,7 +38,7 @@ class Draft(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'draftcombinenonstationaryshooting'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -56,7 +56,7 @@ class Draft(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'draftcombineplayeranthro'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -74,7 +74,7 @@ class Draft(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'draftcombinespotshooting'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -92,7 +92,7 @@ class Draft(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'draftcombinestats'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -108,7 +108,7 @@ class Draft(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'drafthistory'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -133,6 +133,6 @@ class Draft(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'franchisehistory'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return r

@@ -89,7 +89,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashteamstats'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
@@ -160,7 +160,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashlineups'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 1, 'resultSets')
         return df
 
@@ -230,7 +230,7 @@ class Team(BaseEndpoint):
         """
         params=clean_locals(locals())
         endpoint = 'leaguedashlineups'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
@@ -313,7 +313,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashteamshotlocations'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = pd.DataFrame(data=r.get('resultSets').get('rowSet'), columns=r.get('resultSets').get('headers')[1].get('columnNames'))
         return df
 
@@ -390,7 +390,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashteamptshot'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
@@ -453,7 +453,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashptdefend'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
@@ -539,7 +539,7 @@ class Team(BaseEndpoint):
          """
         params = clean_locals(locals())
         endpoint = 'leaguedashteamclutch'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
@@ -596,7 +596,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashptpass'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -662,7 +662,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashptreb'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -731,7 +731,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashptshots'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -817,7 +817,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamvsplayer'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -902,7 +902,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashboardbyclutch'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -981,7 +981,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashboardbygamesplits'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -1062,7 +1062,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashboardbygeneralsplits'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -1142,7 +1142,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashboardbylastngames'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -1220,7 +1220,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashboardbyopponent'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -1302,7 +1302,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashboardbyshootingsplits'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -1380,7 +1380,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashboardbyteamperformance'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -1456,7 +1456,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamdashboardbyyearoveryear'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -1478,7 +1478,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamyearbyyearstats'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
@@ -1503,7 +1503,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamgamelog'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
@@ -1571,7 +1571,7 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamplayeronoffdetails'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 
@@ -1643,6 +1643,6 @@ class Team(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teamplayeronoffdetails'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df

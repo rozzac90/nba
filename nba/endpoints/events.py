@@ -22,7 +22,7 @@ class Events(BaseEndpoint):
         """
         endpoint = 'locations_getmoments'
         params = clean_locals(locals())
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         if len(r) > 0:
             try:
                 headers = ["TeamID", "PlayerID", "x_loc", "y_loc", "Radius", "MomentID", "GameClock", "ShotClock", "EventID"]
@@ -57,7 +57,7 @@ class Events(BaseEndpoint):
         df = pd.DataFrame()
         for i in range(1, int(limit)):
             params = {'GameID': GameID, 'EventID': str(i)}
-            r = self.request(params, endpoint)
+            r = self.request(endpoint, params)
             if len(r) > 0:
                 try:
                     headers = ["TeamID", "PlayerID", "x_loc", "y_loc",

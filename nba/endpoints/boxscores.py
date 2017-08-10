@@ -38,7 +38,7 @@ class Boxscores(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'boxscoreadvancedv2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
@@ -74,7 +74,7 @@ class Boxscores(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'boxscorefourfactorsv2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
@@ -110,7 +110,7 @@ class Boxscores(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'boxscoremiscv2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
@@ -146,7 +146,7 @@ class Boxscores(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'boxscorescoringv2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
@@ -183,7 +183,7 @@ class Boxscores(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'boxscoretraditionalv2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
@@ -220,7 +220,7 @@ class Boxscores(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'boxscoreusagev2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
@@ -263,7 +263,7 @@ class Boxscores(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'boxscoresummaryv2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df
 
@@ -299,6 +299,6 @@ class Boxscores(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'boxscoreplayertrackv2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r.json(), idx_data, 'resultSets')
         return df

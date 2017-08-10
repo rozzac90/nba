@@ -25,7 +25,7 @@ class BaseEndpoint(object):
             'GET', request_url, params=params, data=json.dumps(data), headers=self.client.headers
         )
         check_status_code(response)
-        return response
+        return response.json()
 
     @staticmethod
     def process_response(response_json, idx_val, result_name):

@@ -42,7 +42,7 @@ class Homepage(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'homepageleaders'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -88,7 +88,7 @@ class Homepage(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'homepagev2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -130,6 +130,6 @@ class Homepage(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaderstiles'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSet')
         return df

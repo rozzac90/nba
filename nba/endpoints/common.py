@@ -6,7 +6,7 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 class Common(BaseEndpoint):
 
-    def commonTeamYears(self, LeagueID=enums.LeagueID.Default):
+    def team_years(self, LeagueID=enums.LeagueID.Default):
         """
         Get information on when teams were playing in the league.
     
@@ -17,11 +17,11 @@ class Common(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'commonTeamYears'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return r
     
-    def commonallplayers(self, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default, IsOnlyCurrentSeason=1):
+    def all_players(self, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default, IsOnlyCurrentSeason=1):
         """
         Get individual player details.
     
@@ -37,12 +37,11 @@ class Common(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'commonallplayers'
-        r = self.request(params, endpoint)
-        print(r)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return r
     
-    def commonplayerinfo(self, PlayerID):
+    def player_info(self, PlayerID):
         """
         Get detailed information for a player.
     
@@ -54,11 +53,11 @@ class Common(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'commonplayerinfo'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
-    def commonplayoffseries(self, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default):
+    def play_off_series(self, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default):
         """
         Get playoff series match ups for a given season.
     
@@ -72,11 +71,11 @@ class Common(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'commonplayoffseries'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
-    def commonteamroster(self, TeamID, Season=enums.Season.Default):
+    def team_roster(self, TeamID, Season=enums.Season.Default):
         """
         Get team roster breakdown.
     
@@ -90,11 +89,11 @@ class Common(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'commonteamroster'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
 
-    def teaminfocommon(self, TeamID, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default, SeasonType=enums.SeasonType.Default):
+    def team_info(self, TeamID, LeagueID=enums.LeagueID.Default, Season=enums.Season.Default, SeasonType=enums.SeasonType.Default):
         """
         Get high level team data.
     
@@ -112,6 +111,6 @@ class Common(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'teaminfocommon'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df

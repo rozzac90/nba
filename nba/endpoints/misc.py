@@ -35,7 +35,7 @@ class Misc(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playoffpicture'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -53,6 +53,6 @@ class Misc(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'videoStatus'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df

@@ -39,7 +39,7 @@ class Scoreboard(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'scoreboardV2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
 

@@ -30,7 +30,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leagueleaders'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSet')
         return df
     
@@ -116,7 +116,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashplayerbiostats'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -217,7 +217,7 @@ class Player(BaseEndpoint):
          """
         params = clean_locals(locals())
         endpoint = 'leaguedashplayerclutch'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -314,7 +314,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashplayerptshot'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -416,7 +416,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashplayershotlocations'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = pd.DataFrame(data=r.get('resultSets').get('rowSet'),columns=r.get('resultSets').get('headers')[1].get('columnNames'))
         return df
     
@@ -516,7 +516,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashplayerstats'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -606,7 +606,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashptdefend'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -699,7 +699,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashptstats'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -735,7 +735,7 @@ class Player(BaseEndpoint):
         """
         endpoint = 'playercareerstats'
         params = {'PlayerID': PlayerID, 'PerMode': PerMode}
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -772,7 +772,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguegamelog'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -854,7 +854,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playercompare'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -940,7 +940,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashboardbyclutch'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1020,7 +1020,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashboardbygamesplits'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1099,7 +1099,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'shotchartdetail'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1181,7 +1181,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashboardbygeneralsplits'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1262,7 +1262,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashboardbylastngames'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1341,7 +1341,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashboardbyopponent'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1424,7 +1424,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashboardbyshootingsplits'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1503,7 +1503,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashboardbyteamperformance'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1580,7 +1580,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashboardbyyearoveryear'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1641,7 +1641,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashptpass'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1710,7 +1710,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashptreb'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1778,7 +1778,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashptshotdefend'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
     
@@ -1848,7 +1848,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playerdashptshots'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
@@ -1951,6 +1951,6 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playersvsplayers'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df

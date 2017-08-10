@@ -22,6 +22,6 @@ class PlayByPlay(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'playbyplayv2'
-        r = self.request(params, endpoint)
+        r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
