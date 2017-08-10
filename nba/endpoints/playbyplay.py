@@ -6,16 +6,16 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 class PlayByPlay(BaseEndpoint):
 
-    def playbyplay(self, GameID, StartPeriod=enums.StartPeriod.Default, EndPeriod=enums.EndPeriod.Default):
+    def play_by_play(self, game_id, start_period=enums.StartPeriod.Default, end_period=enums.EndPeriod.Default):
         """
         Play by play data for a given game, comments from home, away and neutral perspective.
     
-        :param GameID: ID of the game to get data for.
-        :type GameID: str
-        :param StartPeriod: starting period filter on the data.
-        :type StartPeriod: nba.nba.bin.enums.StartPeriod
-        :param EndPeriod: ending period filter on the data.
-        :type EndPeriod: nba.nba.bin.enums.EndPeriod
+        :param game_id: ID of the game to get data for.
+        :type game_id: str
+        :param start_period: starting period filter on the data.
+        :type start_period: nba.nba.bin.enums.StartPeriod
+        :param end_period: ending period filter on the data.
+        :type end_period: nba.nba.bin.enums.EndPeriod
         :returns: play by play event descriptions and details of players involved
         :rtype: Dataframe
     
