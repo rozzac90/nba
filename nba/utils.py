@@ -42,7 +42,7 @@ def clean_locals(params):
 
 
 def clean_param_key(key):
-    return ''.join([k.upper() if k == 'id' else k.title() for k in key.split('_')])
+    return ''.join([k.upper() if k in ['id', 'po'] else k.title() for k in key.split('_')])
 
 
 def check_status_code(response, codes=None):
