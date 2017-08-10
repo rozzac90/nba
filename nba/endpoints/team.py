@@ -1646,3 +1646,28 @@ class Team(BaseEndpoint):
         r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
+
+    def franchise_history(self, idx_data, league_id=enums.LeagueID.Default):
+        """
+        Breakdown of each franchise's record in the NBA.
+
+        :param idx_data: the index to retrieve data from json.
+        :type idx_data: int
+        :param league_id: define league to look at, nba.
+        :type league_id: nba.nba.bin.enums.LeagueID
+        :returns: franchise information.
+        :rtype: Dataframe
+
+        ========   =================   ==================================================
+        idx_data          Name                        Description
+        ========   =================   ==================================================
+            0       FranchiseHistory   Win/Loss Record and Titles Info for franchises.
+            1       DefunctTeams       Franchises no longer in NBA.
+        ========   =================   ==================================================
+
+        """
+        params = clean_locals(locals())
+        endpoint = 'franchisehistory'
+        r = self.request(endpoint, params)
+        df = self.process_response(r, idx_data, 'resultSets')
+        return r
