@@ -6,20 +6,20 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 class Scoreboard(BaseEndpoint):
 
-    def scoreboard(self, GameDate, idx_data, DayOffSet=0, LeagueID=enums.LeagueID.Default):
+    def scoreboard(self, game_date, idx_data, day_off_set=0, league_id=enums.LeagueID.Default):
         """
         Get the scoreboard and game data from a give date/date with offset.
     
-        :param GameDate: reference date to get data for.
-        :type GameDate: str('%Y-%m-%d')
+        :param game_date: reference date to get data for.
+        :type game_date: str('%Y-%m-%d')
         :param idx_data: the index to retrieve data from json.
         :type idx_data: int
-        :param DayOffSet: Number days prior to GameDate to get data for.
-        :type DayOffSet: int
-        :param LeagueID: league to retrieve data for.
-        :type LeagueID: str
+        :param day_off_set: Number days prior to GameDate to get data for.
+        :type day_off_set: int
+        :param league_id: league to retrieve data for.
+        :type league_id: str
         :returns:
-        :rtype: Dataframe
+        :rtype: DataFrame
     
         ========   =======================   ======================================================
         idx_data           Name                                  Description
