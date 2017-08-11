@@ -75,22 +75,31 @@ class Common(BaseEndpoint):
         df = self.process_response(r, 0, 'resultSets')
         return df
     
-    def team_roster(self, team_id, season=enums.Season.Default):
+    def team_roster(self, team_id, idx_data, season=enums.Season.Default):
         """
         Get team roster breakdown.
     
         :param team_id: id of the team whose roster to retrieve
         :type team_id: int
+        :param idx_data: the index to retrieve data from json.
+        :type idx_data: int
         :param season: season for which we require data.
         :type season: str('%Y-%y')
         :returns: roster breakdown of player details.
         :rtype: Dataframe
+        
+        ========   ==================   ====================================================================
+        idx_data         Name                             Description
+        ========   ==================   ====================================================================
+            0       Players              Players roster.
+            1       Coaches              Coaching staff roster.
+        ========   ==================   ====================================================================
     
         """
         params = clean_locals(locals())
         endpoint = 'commonteamroster'
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, idx_data, 'resultSets')
         return df
 
     def team_info(self, team_id, league_id=enums.LeagueID.Default, season=enums.Season.Default,
