@@ -30,7 +30,7 @@ class Weight(_DefaultBlank):
 
 
 class Season:
-    Current = '2015-16'
+    Current = '2016-17'
     Default = Current
 
 
@@ -276,7 +276,7 @@ class OpponentTeamID(_DefaultZero):
     pass
 
 
-class Period(_DefaultZero):
+class Period(_DefaultBlank):
     AllQuarters = '0'
     FirstQuarter = '1'
     SecondQuarter = '2'
@@ -408,6 +408,7 @@ class GameScope:
 
 
 class DistanceRange:
+    Blank = ''
     Zone = 'By Zone'
     Ft5 = '5ft Range'
     Ft8 = '8ft Range'

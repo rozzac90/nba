@@ -1,4 +1,6 @@
 
+import pandas as pd
+
 from nba import enums
 from nba.utils import clean_locals
 from nba.endpoints.baseendpoint import BaseEndpoint
@@ -232,9 +234,8 @@ class Player(BaseEndpoint):
     def all_shot_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                        season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
                        close_def_dist_range=enums.CloseDefDistRange.Default, dribble_range=enums.DribbleRange.All,
-                       shot_clock_range=enums.ShotClockRange.Default, shot_dist_range=enums.DistanceRange.Default,
-                       touch_time_range='', general_range='', team_id=enums.TeamID.Default,
-                       college=enums.College.Default, conference=enums.Conference.Default,
+                       shot_clock_range=enums.ShotClockRange.Default, touch_time_range='', general_range='',
+                       team_id=enums.TeamID.Default, college=enums.College.Default, conference=enums.Conference.Default,
                        country=enums.Country.Default, date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
                        division=enums.Division.Default, draft_pick=enums.DraftPick.Default,
                        draft_year=enums.DraftYear.Default, game_segment=enums.GameSegment.Default,
@@ -262,8 +263,6 @@ class Player(BaseEndpoint):
         :type dribble_range: nba.nba.bin.enums.DribbleRange
         :param shot_clock_range: Filter to specific shot clock time windows. Default '' returns all.
         :type shot_clock_range: nba.nba.bin.enums.ShotClockRange
-        :param shot_dist_range: Filter stats to include only shots in specified distance range. Default '' returns all.
-        :type shot_dist_range: unsure.
         :param touch_time_range: Filter by how long ball is held prior to shot. Default '' returns all.
         :type touch_time_range: unsure.
         :param general_range: No idea what this does.
@@ -331,7 +330,7 @@ class Player(BaseEndpoint):
     def all_shot_locations(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                            season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
                            measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                           pace_adjust=enums.PaceAdjust.Default, rank= enums.Rank.Default,
+                           pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                            distance_range=enums.DistanceRange.Default, shot_clock_range=enums.ShotClockRange.Default,
                            game_scope=enums.GameScope.Blank, team_id=enums.TeamID.Default,
                            college=enums.College.Default, conference=enums.Conference.Default,
@@ -430,7 +429,9 @@ class Player(BaseEndpoint):
         params = clean_locals(locals())
         endpoint = 'leaguedashplayershotlocations'
         r = self.request(endpoint, params)
-        df = pd.DataFrame(data=r.get('resultSets').get('rowSet'),columns=r.get('resultSets').get('headers')[1].get('columnNames'))
+        df = pd.DataFrame(
+            data=r.get('resultSets').get('rowSet'), columns=r.get('resultSets').get('headers')[1].get('columnNames')
+        )
         return df
     
     def all_raw_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
@@ -796,7 +797,7 @@ class Player(BaseEndpoint):
         df = self.process_response(r, 0, 'resultSets')
         return df
     
-    def player_compare(self, player_id, vs_player_id, idx_data, league_id=enums.LeagueID.Default,
+    def player_compare(self, player_id_list, vs_player_id_list, idx_data, league_id=enums.LeagueID.Default,
                        season=enums.Season.Default, season_type=enums.SeasonType.Default,
                        per_mode=enums.PerMode.Default, measure_type=enums.MeasureType.Default,
                        plus_minus=enums.PlusMinus.Default, pace_adjust=enums.PaceAdjust.Default,
@@ -811,10 +812,10 @@ class Player(BaseEndpoint):
         """
         Comparison of two players.
     
-        :param player_id: player ID for Player 1 in comparison.
-        :type player_id: int
-        :param vs_player_id: Player ID for Player 2 in comparison.
-        :type vs_player_id: int
+        :param player_id_list: player ID for Player 1 in comparison.
+        :type player_id_list: int
+        :param vs_player_id_list: Player ID for Player 2 in comparison.
+        :type vs_player_id_list: int
         :param idx_data: the index to retrieve data from json.
         :type idx_data: int
         :param league_id: ID of the league to get data for. Default 00. Required.
@@ -1056,7 +1057,7 @@ class Player(BaseEndpoint):
     def individual_shot_chart(self, player_id, idx_data, game_id=enums.Default_Values.Blank, 
                               context_measure=enums.ContextMeasure.FGA, clutch_time=enums.ClutchTime.Default, 
                               ahead_behind=enums.AheadBehind.Default, point_diff=100, 
-                              start_period=enums.Default_Values.Blank, end_period=enums.Default_Values.Blank, 
+                              start_period=enums.Period.Default, end_period=enums.Period.Default,
                               start_range=enums.Default_Values.Blank, end_range=enums.Default_Values.Blank, 
                               league_id=enums.LeagueID.Default, season_type=enums.SeasonType.Default, 
                               date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, 
@@ -1084,6 +1085,10 @@ class Player(BaseEndpoint):
         :type ahead_behind: nba.nba.bin.enums.AheadBehind
         :param point_diff: Absolute difference between teams for stats to be included. Required.
         :type point_diff: int
+        :param start_period: filter shots to only those taken after a specified quarter. Default includes all quarters.
+        :type start_period: nba.nba.enums.Period
+        :param end_period: filter shots to only those taken before a specified quarter. Default includes all quarters.
+        :type end_period: nba.nba.enums.Period
         :param team_id: ID of specific team to filter. Default 0, returns all.
         :type team_id: nba.nba.bin.enums.TeamID
         :param league_id: ID of the league to get data for. Default 00. Required.
@@ -1909,7 +1914,7 @@ class Player(BaseEndpoint):
         df = self.process_response(r, idx_data, 'resultSets')
         return df
     
-    def players_vs_players(self, team_1_id, vs_team_id, player_id_1, vs_player_id_1, idx_data,
+    def players_vs_players(self, player_team_id, vs_team_id, player_id_1, vs_player_id_1, idx_data,
                            player_id_2=enums.Default_Values.Zero, player_id_3=enums.Default_Values.Zero,
                            player_id_4=enums.Default_Values.Zero, player_id_5=enums.Default_Values.Zero,
                            vs_player_id_2=enums.Default_Values.Zero, vs_player_id_3=enums.Default_Values.Zero,
@@ -1920,7 +1925,7 @@ class Player(BaseEndpoint):
                            pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                            shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
                            date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                           period=enums.Period.Default, last_n_games=enums.LastNGames.Default,
+                           period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                            location=enums.Location.Default, month=enums.Month.Default,
                            opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                            conference=enums.Conference.Default, division=enums.Division.Default,
@@ -1929,8 +1934,8 @@ class Player(BaseEndpoint):
         """
         Player|Players stats breakdown individually or combined whilst other players are on|off court.
     
-        :param team_1_id: Team ID of the base team in comparison. Required.
-        :type team_1_id: int
+        :param player_team_id: Team ID of the base team in comparison. Required.
+        :type player_team_id: int
         :param vs_team_id: Team ID of the comparative team. Required.
         :type vs_team_id: int
         :param player_id_1: player ID for Player 1 in comparison. Required.
