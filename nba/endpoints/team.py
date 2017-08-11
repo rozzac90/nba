@@ -16,7 +16,7 @@ class Team(BaseEndpoint):
                       team_id=enums.TeamID.Default, college=enums.College.Default, conference=enums.Conference.Default, 
                       country=enums.Country.Default, date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, 
                       division=enums.Division.Default, game_segment=enums.GameSegment.Default, 
-                      period=enums.Period.Default, last_n_games=enums.LastNGames.Default, 
+                      period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                       location=enums.Location.Default, month=enums.Month.Default, 
                       opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default, 
                       po_round=enums.PORound.Default, player_experience=enums.PlayerExperience.Default, 
@@ -103,7 +103,7 @@ class Team(BaseEndpoint):
                      group_quantity=enums.GroupQuantity.Default, measure_type=enums.MeasureType.Default,
                      plus_minus=enums.PlusMinus.Default, pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                      date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                     game_segment=enums.GameSegment.Default, period=enums.Period.Default, outcome=enums.Outcome.Default,
+                     game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters, outcome=enums.Outcome.Default,
                      last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
                      month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
                      season_segment=enums.SeasonSegment.Default, conference=enums.Conference.Default,
@@ -176,17 +176,17 @@ class Team(BaseEndpoint):
         df = self.process_response(r, 1, 'resultSets')
         return df
 
-    def team_lineups_rank(self, season=enums.Season.Default, season_type=enums.SeasonType.Default,
-                          per_mode=enums.PerMode.Default, group_quantity=enums.GroupQuantity.Default,
-                          measure_type=enums.MeasureType.Default, team_id=enums.TeamID.Default,
-                          plus_minus=enums.PlusMinus.Default, pace_adjust=enums.PaceAdjust.Default,
-                          rank=enums.Rank.Default, date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                          game_segment=enums.GameSegment.Default, period=enums.Period.Default,
-                          last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                          month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                          outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
-                          conference=enums.Conference.Default, division=enums.Division.Default,
-                          vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def all_team_lineups(self, season=enums.Season.Default, season_type=enums.SeasonType.Default,
+                         per_mode=enums.PerMode.Default, group_quantity=enums.GroupQuantity.Default,
+                         measure_type=enums.MeasureType.Default, team_id=enums.TeamID.Default,
+                         plus_minus=enums.PlusMinus.Default, pace_adjust=enums.PaceAdjust.Default,
+                         rank=enums.Rank.Default, date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
+                         game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
+                         last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
+                         month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
+                         outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
+                         conference=enums.Conference.Default, division=enums.Division.Default,
+                         vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
         """
         Top 250 team lineup combinations of specified group quantity, ranked by stat category.
     
@@ -250,18 +250,18 @@ class Team(BaseEndpoint):
     def all_shot_locations(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                            season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default, 
                            measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default, 
-                           pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default, 
-                           shot_clock_range=enums.ShotClockRange.Default, game_scope=enums.GameScope.Blank, 
-                           team_id=enums.TeamID.Default, conference=enums.Conference.Default, 
-                           date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, 
-                           division=enums.Division.Default, game_segment=enums.GameSegment.Default, 
-                           period=enums.Period.Default, last_n_games=enums.LastNGames.Default, 
-                           location=enums.Location.Default, month=enums.Month.Default, 
-                           opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default, 
-                           po_round=enums.PORound.Default, player_experience=enums.PlayerExperience.Default, 
+                           pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
+                           distance_range=enums.DistanceRange.Zone, shot_clock_range=enums.ShotClockRange.Default,
+                           game_scope=enums.GameScope.Blank, team_id=enums.TeamID.Default,
+                           conference=enums.Conference.Default, date_from=enums.DateFrom.Default,
+                           date_to=enums.DateTo.Default, division=enums.Division.Default,
+                           game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
+                           last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
+                           month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
+                           outcome=enums.Outcome.Default, po_round=enums.PORound.Default,
+                           player_experience=enums.PlayerExperience.Default, starter_bench=enums.StarterBench.Default,
                            player_position=enums.PlayerPosition.Default, season_segment=enums.SeasonSegment.Default,
-                           starter_bench=enums.StarterBench.Default, vs_conference=enums.VsConference.Default, 
-                           vs_division=enums.VsDivision.Default):
+                           vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
         """
         Team shot stats breakdown, default broken down by shot category.
     
@@ -279,6 +279,8 @@ class Team(BaseEndpoint):
         :type plus_minus: nba.nba.bin.enums.PlusMinus
         :param pace_adjust: whether to have stats as adjusted for pace, Y|N. Default N. Required.
         :type pace_adjust: nba.nba.bin.enums.PaceAdjust
+        :param distance_range: Filter shots to include by range buckets. Default by zone. Required.
+        :type distance_range: nba.nba.bin.enums.DistanceRange
         :param rank: whether to include stat ranks, Y|N. Default N. Required
         :type rank: nba.nba.bin.enums.Rank
         :param game_scope: Filter for games to include, Last 10 or Yesterday accepted. Default '' returns all. Required
@@ -344,7 +346,7 @@ class Team(BaseEndpoint):
                        touch_time_range=enums.Default_Values.Blank, general_range=enums.Default_Values.Blank, 
                        team_id=enums.TeamID.Default, conference=enums.Conference.Default, 
                        date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, division=enums.Division.Default, 
-                       game_segment=enums.GameSegment.Default, period=enums.Period.Default, 
+                       game_segment=enums.GameSegment.Default, period=enums.Period.Default,
                        last_n_games=enums.LastNGames.Default, po_round=enums.PORound.Default, 
                        location=enums.Location.Default, month=enums.Month.Default, 
                        opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default, 
@@ -421,7 +423,7 @@ class Team(BaseEndpoint):
                             date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, 
                             division=enums.Division.Default, game_scope=enums.GameScope.Default, 
                             team_id=enums.TeamID.Default, game_segment=enums.GameSegment.Default, 
-                            period=enums.Period.Default, last_n_games=enums.LastNGames.Default, 
+                            period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                             location=enums.Location.Default, month=enums.Month.Default, 
                             opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default, 
                             po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default, 
@@ -494,7 +496,7 @@ class Team(BaseEndpoint):
                          season_segment=enums.SeasonSegment.Default, date_from=enums.DateFrom.Default, 
                          date_to=enums.DateTo.Default, opponent_team_id=enums.OpponentTeamID.Default, 
                          vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default, 
-                         game_segment=enums.GameSegment.Default, period=enums.Period.Default, 
+                         game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
                          last_n_games=enums.LastNGames.Default, conference=enums.Conference.Default, 
                          division=enums.Division.Default, team_id=enums.TeamID.Default, po_round=enums.PORound.Default, 
                          shot_clock_range=enums.ShotClockRange.Default):
@@ -637,7 +639,7 @@ class Team(BaseEndpoint):
     def team_rebounding_stats(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                               season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
                               date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                              game_segment=enums.GameSegment.Default, period=enums.Period.Default,
+                              game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
                               last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
                               month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
                               outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
@@ -704,7 +706,7 @@ class Team(BaseEndpoint):
     def team_shooting_stats(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                             season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
                             date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                            game_segment=enums.GameSegment.Default, period=enums.Period.Default,
+                            game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
                             last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
                             month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
                             outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
@@ -778,7 +780,7 @@ class Team(BaseEndpoint):
                        plus_minus=enums.PlusMinus.Default, pace_adjust=enums.PaceAdjust.Default,
                        rank=enums.Rank.Default, shot_clock_range=enums.ShotClockRange.Default,
                        date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                       game_segment=enums.GameSegment.Default, period=enums.Period.Default,
+                       game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
                        last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
                        month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
                        outcome=enums.Outcome.Default, conference=enums.Conference.Default,
@@ -869,7 +871,7 @@ class Team(BaseEndpoint):
                           pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                           shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
                           date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                          period=enums.Period.Default, last_n_games=enums.LastNGames.Default,
+                          period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                           location=enums.Location.Default, month=enums.Month.Default,
                           opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                           po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
@@ -957,7 +959,7 @@ class Team(BaseEndpoint):
                          pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                          shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
                          date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                         period=enums.Period.Default, last_n_games=enums.LastNGames.Default,
+                         period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                          location=enums.Location.Default, month=enums.Month.Default,
                          opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                          po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
@@ -1039,7 +1041,7 @@ class Team(BaseEndpoint):
                        pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                        shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
                        date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                       period=enums.Period.Default, last_n_games=enums.LastNGames.Default,
+                       period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                        location=enums.Location.Default, month=enums.Month.Default,
                        opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                        po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
@@ -1123,7 +1125,7 @@ class Team(BaseEndpoint):
                           pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                           shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
                           date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                          period=enums.Period.Default, last_n_games=enums.LastNGames.Default,
+                          period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                           location=enums.Location.Default, month=enums.Month.Default,
                           opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                           po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
@@ -1206,7 +1208,7 @@ class Team(BaseEndpoint):
                          pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                          shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
                          date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                         period=enums.Period.Default, last_n_games=enums.LastNGames.Default,
+                         period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                          location=enums.Location.Default, month=enums.Month.Default,
                          opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                          po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
@@ -1287,7 +1289,7 @@ class Team(BaseEndpoint):
                           pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                           shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
                           date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                          period=enums.Period.Default, last_n_games=enums.LastNGames.Default,
+                          period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                           location=enums.Location.Default, month=enums.Month.Default,
                           opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                           po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
@@ -1354,9 +1356,8 @@ class Team(BaseEndpoint):
             2       Shot8FTTeamDashboard             Team stats split by shots distance as granular as 8ft range.
             3       ShotAreaTeamDashboard            Team stats split by shot area.
             4       AssitedShotTeamDashboard         Team stats split by Assisted|Unassisted.
-            5       ShotTypeSummaryTeamDashboard     Team stats split by Shot Type.
-            6       ShotTypeTeamDashboard            Team stats split by more granular shot type.
-            7       AssistedBy                       Team stats split by Team assisting.
+            5       ShotTypeTeamDashboard            Team stats split by more granular shot type.
+            6       AssistedBy                       Team stats split by Team assisting.
         ========   ==============================   ====================================================================
     
         """
@@ -1372,7 +1373,7 @@ class Team(BaseEndpoint):
                             pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                             shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
                             date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                            period=enums.Period.Default, last_n_games=enums.LastNGames.Default,
+                            period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
                             location=enums.Location.Default, month=enums.Month.Default,
                             opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                             po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
@@ -1450,9 +1451,9 @@ class Team(BaseEndpoint):
     def team_by_year(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                      season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
                      measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                     pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
+                     pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default, period=enums.Period.AllQuarters,
                      shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                     date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default, period=enums.Period.Default,
+                     date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
                      last_n_games=enums.LastNGames.Default, location=enums.Location.Default, month=enums.Month.Default,
                      opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
                      po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
@@ -1578,7 +1579,7 @@ class Team(BaseEndpoint):
                            measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
                            pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
                            date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                           game_segment=enums.GameSegment.Default, period=enums.Period.Default,
+                           game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
                            last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
                            month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
                            outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
@@ -1671,4 +1672,4 @@ class Team(BaseEndpoint):
         endpoint = 'franchisehistory'
         r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
-        return r
+        return df
