@@ -1,6 +1,6 @@
 
 import datetime
-from matchbook.exceptions import ApiError
+from nba.exceptions import ApiError
 
 
 def clean_time(col):
