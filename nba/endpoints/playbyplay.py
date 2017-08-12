@@ -6,7 +6,7 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 class PlayByPlay(BaseEndpoint):
 
-    def play_by_play(self, game_id, start_period=enums.StartPeriod.Default, end_period=enums.EndPeriod.Default):
+    def play_by_play(self, game_id, start_period=enums.StartPeriod.AllQuarters, end_period=enums.EndPeriod.AllQuarters):
         """
         Play by play data for a given game, comments from home, away and neutral perspective.
     
