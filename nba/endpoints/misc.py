@@ -1,5 +1,6 @@
 
 import datetime
+import pandas as pd
 
 from nba import enums
 from nba.utils import clean_locals
@@ -15,9 +16,9 @@ class Misc(BaseEndpoint):
         :param idx_data: the index to retrieve data from json.
         :type idx_data: int
         :param league_id: league to filter for.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param season_id: Season for which to get stat leaders.
-        :type season_id: nba.nba.bin.enums.Season
+        :type season_id: nba.enums.Season
         :returns: A view of playoff or standings, as show in idx_data table breakdown below.
         :rtype: DataFrame
     
@@ -46,7 +47,7 @@ class Misc(BaseEndpoint):
         :param game_date: date to check.
         :type game_date: str('%Y-%m-%d')
         :param league_id: league to filter for.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :returns: games on the given date and whether they are available on video.
         :rtype: DataFrame
     
@@ -55,4 +56,15 @@ class Misc(BaseEndpoint):
         endpoint = 'videoStatus'
         r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
+        return df
+
+    def rotowire_player_news(self):
+        """
+        Get player news and updates from rotowire.
+        
+        :return: News updates.
+        """
+        url = r'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player'
+        r = self.request(None, request_url=url)
+        df = pd.DataFrame(r.get('ListItems', []))
         return df

@@ -13,11 +13,11 @@ class PlayByPlay(BaseEndpoint):
         :param game_id: ID of the game to get data for.
         :type game_id: str
         :param start_period: starting period filter on the data.
-        :type start_period: nba.nba.bin.enums.StartPeriod
+        :type start_period: nba.enums.StartPeriod
         :param end_period: ending period filter on the data.
-        :type end_period: nba.nba.bin.enums.EndPeriod
+        :type end_period: nba.enums.EndPeriod
         :returns: play by play event descriptions and details of players involved
-        :rtype: Dataframe
+        :rtype: DataFrame
     
         """
         params = clean_locals(locals())

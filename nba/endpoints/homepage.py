@@ -16,19 +16,19 @@ class Homepage(BaseEndpoint):
         :param idx_data: the index to retrieve data from json.
         :type idx_data: int
         :param league_id: league to filter for.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param stat_category: Stat to sort leaders table by.
-        :type stat_category: nba.nba.bin.enums.StatCategory
+        :type stat_category: nba.enums.StatCategory
         :param season: Season for which to get stat leaders.
-        :type season: nba.nba.bin.enums.Season
+        :type season: nba.enums.Season
         :param season_type: Regular Season or Playoffs.
-        :type season_type: nba.nba.bin.enums.SeasonType
+        :type season_type: nba.enums.SeasonType
         :param player_or_team: whether to get individual players or by team.
-        :type player_or_team: nba.nba.bin.enums.PlayerOrTeam
+        :type player_or_team: nba.enums.PlayerOrTeam
         :param game_scope: what games to include in the data.
-        :type game_scope: nba.nba.bin.enums.GameScope
+        :type game_scope: nba.enums.GameScope
         :param player_scope: filter by rookies only or all players
-        :type player_scope: nba.nba.bin.enums.PlayerScope
+        :type player_scope: nba.enums.PlayerScope
         :returns: data for specified filters, as defined below by idx_data.
         :rtype: DataFrame
     
@@ -57,19 +57,19 @@ class Homepage(BaseEndpoint):
         :param idx_data: the index to retrieve data from json.
         :type idx_data: int
         :param league_id: league to filter for.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param stat_type: Stat to sort leaders table by.
-        :type stat_type: nba.nba.bin.enums.StatType
+        :type stat_type: nba.enums.StatType
         :param season: Season for which to get stat leaders.
-        :type season: nba.nba.bin.enums.Season
+        :type season: nba.enums.Season
         :param season_type: Regular Season or Playoffs.
-        :type season_type: nba.nba.bin.enums.SeasonType
+        :type season_type: nba.enums.SeasonType
         :param player_or_team: whether to get individual players or by team.
-        :type player_or_team: nba.nba.bin.enums.PlayerOrTeam
+        :type player_or_team: nba.enums.PlayerOrTeam
         :param game_scope: what games to include in the data.
-        :type game_scope: nba.nba.bin.enums.GameScope
+        :type game_scope: nba.enums.GameScope
         :param player_scope: filter by rookies only or all players
-        :type player_scope: nba.nba.bin.enums.PlayerScope
+        :type player_scope: nba.enums.PlayerScope
         :returns: top 5 players for given stat type, as defined below by idx_data.
         :rtype: DataFrame
     
@@ -103,19 +103,19 @@ class Homepage(BaseEndpoint):
         :param idx_data: the index to retrieve data from json.
         :type idx_data: int
         :param league_id: league to filter for.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param stat: Stat to sort leaders table by.
-        :type stat: nba.nba.bin.enums.Stat
+        :type stat: nba.enums.Stat
         :param season: Season for which to get stat leaders.
-        :type season: nba.nba.bin.enums.Season
+        :type season: nba.enums.Season
         :param season_type: Regular Season or Playoffs.
-        :type season_type: nba.nba.bin.enums.SeasonType
+        :type season_type: nba.enums.SeasonType
         :param player_or_team: whether to get individual players or by team.
-        :type player_or_team: nba.nba.bin.enums.PlayerOrTeam
+        :type player_or_team: nba.enums.PlayerOrTeam
         :param game_scope: what games to include in the data.
-        :type game_scope: nba.nba.bin.enums.GameScope
+        :type game_scope: nba.enums.GameScope
         :param player_scope: filter by rookies only or all players
-        :type player_scope: nba.nba.bin.enums.PlayerScope
+        :type player_scope: nba.enums.PlayerScope
         :returns: data for specified filters, as defined below by idx_data.
         :rtype: DataFrame
     

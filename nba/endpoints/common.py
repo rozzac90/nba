@@ -11,7 +11,7 @@ class Common(BaseEndpoint):
         Get information on when teams were playing in the league.
         
         :param league_id: define league to look at, nba.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :returns: breakdown of min and max year playing in nba by team.
         
         """
@@ -110,11 +110,11 @@ class Common(BaseEndpoint):
         :param team_id: id of team for which to get data.
         :type team_id: int
         :param league_id: id of league in which team plays.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param season: season for which we require data.
         :type season: str('%Y-%y')
         :param season_type: playoff or regular season specification.
-        :type season_type: nba.nba.bin.enums.SeasonType
+        :type season_type: nba.enums.SeasonType
         :returns: team information and season record.
         :rtype: Dataframe
     

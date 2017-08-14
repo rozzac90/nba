@@ -11,7 +11,7 @@ class Draft(BaseEndpoint):
         Combine drill results for a given year.
     
         :param league_id: define league to look at, nba.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param season_year: draft season.
         :type season_year: str('%Y-%y')
         :returns: Combine drill results by player.
@@ -29,7 +29,7 @@ class Draft(BaseEndpoint):
         Moving shooting scores broken down by movement type.
     
         :param league_id: define league to look at, nba.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param season_year: draft season.
         :type season_year: str('%Y-%y')
         :returns: Movement shooting results by player.
@@ -47,7 +47,7 @@ class Draft(BaseEndpoint):
         Detailed breakdown of players measurements and physical stats.
     
         :param league_id: define league to look at, nba.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param season_year: draft season.
         :type season_year: str('%Y-%y')
         :returns: Measurements and physical information by player.
@@ -65,7 +65,7 @@ class Draft(BaseEndpoint):
         Get raw and pct shooting results from draft combine for a given year.
     
         :param league_id: define league to look at, nba.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param season_year: draft season.
         :type season_year: str('%Y-%y')
         :returns: Combine shooting results by player.
@@ -83,7 +83,7 @@ class Draft(BaseEndpoint):
         Get combine results for a draft year.
     
         :param league_id: define league to look at, nba.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :param season_year: draft season.
         :type season_year: str('%Y-%y')
         :returns: Combine results by player.
@@ -101,7 +101,7 @@ class Draft(BaseEndpoint):
         Breakdown of pick number and player data for historical drafts.
     
         :param league_id: define league to look at, nba.
-        :type league_id: nba.nba.bin.enums.LeagueID
+        :type league_id: nba.enums.LeagueID
         :returns: Player pick numbers for historic drafts.
         :rtype: Dataframe
     

@@ -466,3 +466,30 @@ class ContextMeasure:
 class Default_Values:
     Blank = ''
     Zero = 0
+
+
+class SynergySeasonType:
+    Regular = 'Reg'
+    Playoffs = 'Post'
+    Default = Regular
+
+
+class PlayType:
+    Transition = 'Transition'
+    Isolation = 'Isolation'
+    PickNRollHandler = 'PRBallHandler'
+    PickNRollRoller = 'PRRollman'
+    PostUp = 'Postup'
+    SpotUp = 'Spotup'
+    HandOff = 'Handoff'
+    Cut = 'Cut'
+    OffScreen = 'OffScreen'
+    Putback = 'OffRebound'
+    Other = 'Misc'
+    Default = Isolation
+
+
+class SynergyName:
+    Offense = 'offensive'
+    Defense = 'defensive'
+    Default = Offense

@@ -12,15 +12,17 @@ class BaseEndpoint(object):
         """
         self.client = parent
 
-    def request(self, method, params={}, data={}, session=None):
+    def request(self, method, params={}, data={}, session=None, request_url=None):
         """
         :param method: NBA API method to be used.
         :param params: Params to be used in request.
         :param data: data to be sent in request body.
         :param session: Requests session to be used, reduces latency.
+        :param request_url: specific url to use rather than building it.
         """
         session = session or self.client.session
-        request_url = '%s%s' % (self.client.url, method)
+        if request_url is None:
+            request_url = '%s%s' % (self.client.url, method)
         response = session.request(
             'GET', request_url, params=params, data=json.dumps(data), headers=self.client.headers,
         )
@@ -28,8 +30,7 @@ class BaseEndpoint(object):
             response = session.request(
                 'GET', request_url, params=params, data=json.dumps(data), headers=self.client.headers
             )
-        print(response.url)
-        # check_status_code(response)
+        check_status_code(response)
         return response.json()
 
     @staticmethod
