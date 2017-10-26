@@ -1,7 +1,9 @@
+
 import json
 import pandas as pd
+from functools import lru_cache
 
-from nba.utils import check_status_code
+from nba.utils import check_status_code, HDict
 
 
 class BaseEndpoint(object):
@@ -12,7 +14,8 @@ class BaseEndpoint(object):
         """
         self.client = parent
 
-    def request(self, method, params={}, data={}, session=None, request_url=None):
+    @lru_cache(maxsize=16)
+    def request(self, method, params=HDict({}), data=HDict({}), session=None, request_url=None):
         """
         :param method: NBA API method to be used.
         :param params: Params to be used in request.

@@ -39,7 +39,7 @@ class Misc(BaseEndpoint):
         r = self.request(endpoint, params)
         df = self.process_response(r, idx_data, 'resultSets')
         return df
-    
+
     def video_status(self, game_date=datetime.datetime.today().strftime('%Y-%m-%d'), league_id=enums.LeagueID.Default):
         """
         Breakdown of which games are available on video on a given date.

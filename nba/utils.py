@@ -37,8 +37,12 @@ def clean_locals(params):
     :returns: cleaned locals dict to use as params for functions
     :rtype: dict
     """
-    return dict((clean_param_key(k), v)
-                for k, v in params.items() if v is not None and k not in ['self', 'session', 'idx_data'])
+    return HDict(
+        dict((clean_param_key(k), HDict(v)) if isinstance(v, dict)
+             else (clean_param_key(k), tuple(v)) if isinstance(v, list)
+             else (clean_param_key(k), v)
+             for k, v in params.items() if v is not None and k not in ['self', 'session', 'idx_data'])
+    )
 
 
 def clean_param_key(key):
@@ -54,3 +58,8 @@ def check_status_code(response, codes=None):
     codes = codes or [200]
     if response.status_code not in codes:
         raise ApiError(response)
+
+
+class HDict(dict):
+    def __hash__(self):
+        return hash(frozenset(self.items()))
