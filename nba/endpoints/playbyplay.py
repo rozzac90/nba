@@ -1,6 +1,8 @@
 
+import requests
+
 from nba import enums
-from nba.utils import clean_locals
+from nba.utils import clean_locals, check_status_code
 from nba.endpoints.baseendpoint import BaseEndpoint
 
 
@@ -25,3 +27,20 @@ class PlayByPlay(BaseEndpoint):
         r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
+
+    def play_by_play_detailed(self, game_id, locale='en', period='all'):
+        """
+        Get detailed play by play including location data from nba stats2.
+        
+        :param game_id: ID of the game to get data for.
+        :param locale: language to return data in.
+        :param period: 
+        :return: 
+        """
+        params = clean_locals(locals())
+        response = requests.get('http://uk.global.nba.com/stats2/game/playbyplay.json',
+                                {'gameId': game_id, 'locale': locale, 'period': period})
+        check_status_code(response)
+        data = [events for period in response.json().get('payload', {}).get('playByPlays', {}) for events in
+                period.get('events', [])]
+        return data[::-1]
