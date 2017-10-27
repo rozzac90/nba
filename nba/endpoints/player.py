@@ -231,6 +231,103 @@ class Player(BaseEndpoint):
         df = self.process_response(r, 0, 'resultSets')
         return df
 
+    def all_hustle_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
+                         season_type=enums.SeasonType.Default, game_scope=enums.GameScope.Blank,
+                         player_experience=enums.PlayerExperience.Default, player_position=enums.PlayerPosition.Default,
+                         per_mode=enums.PerMode.Default, plus_minus=enums.PlusMinus.Default,
+                         pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default, outcome=enums.Outcome.Default,
+                         location=enums.Location.Default, month=enums.Month.Default,
+                         season_segment=enums.SeasonSegment.Default, date_from=enums.DateFrom.Default,
+                         date_to=enums.DateTo.Default, opponent_team_id=enums.OpponentTeamID.Default,
+                         vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default,
+                         game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
+                         last_n_games=enums.LastNGames.Default, college=enums.College.Default,
+                         conference=enums.Conference.Default, country=enums.Country.Default,
+                         division=enums.Division.Default, draft_pick=enums.DraftPick.Default,
+                         draft_year=enums.DraftYear.Default, team_id=enums.TeamID.Default, height=enums.Height.Default,
+                         weight=enums.Weight.Default, po_round=enums.PORound.Default,
+                         shot_clock_range=enums.ShotClockRange.Default):
+        """
+        Player clutch stats breakdown.
+
+        :param league_id: ID of the league to get data for. Default 00. Required.
+        :type league_id: nba.enums.LeagueID
+        :param season: Season to get players from. Required.
+        :type season: nba.enums.Season
+        :param season_type: part of season to pull data from. Required.
+        :type season_type: nba.enums.SeasonType
+        :param measure_type: Type of stats to return. Default 'Base'. Required
+        :type measure_type: nba.enums.MeasureType
+        :param game_scope: Filter for games to include, Last 10 or Yesterday accepted. Default '' returns all. Required
+        :type game_scope: nba.enums.GameScope
+        :param plus_minus: whether to have stats as PlusMinus, Y|N. Default N. Required.
+        :type plus_minus: nba.enums.PlusMinus
+        :param pace_adjust: whether to have stats as adjusted for pace, Y|N. Default N. Required.
+        :type pace_adjust: nba.enums.PaceAdjust
+        :param rank: whether to include stat ranks, Y|N. Default N. Required
+        :type rank: nba.enums.Rank
+        :param per_mode: grouping of stat data. Totals or PerGame accepted. Required.
+        :type per_mode: nba.enums.PerMode
+        :param outcome: Filter to only include stats for won or lost games. Default '' returns all. Required.
+        :type outcome: nba.enums.Outcome
+        :param location: Filter for home or road games only. Default '' returns all. Required.
+        :type location: nba.enums.Location
+        :param month: Filter for games occurring in a specific month (relative to season start). Default 0 returns all. Required.
+        :type month: nba.enums.Month
+        :param season_segment: Filter to only include stats from Post/Pre all star break. Default '' returns all. Required
+        :type season_segment: nba.enums.SeasonSegment
+        :param date_from: Minimum date cutoff to include data from. Default '' returns all. Required.
+        :type date_from: nba.enums.DateFrom
+        :param date_to:  Maximum date cutoff to include data to. Default '' returns all. Required.
+        :type date_to: nba.enums.DateTo
+        :param opponent_team_id: Filter to only include stats for games against a specific team. Default 0 returns all. Required.
+        :type opponent_team_id: nba.enums.TeamID
+        :param vs_conference: Filter to only include stats for games against specific conference. Default '' returns all. Required
+        :type vs_conference: nba.enums.VsConference
+        :param vs_division: Filter to only include stats for games against specific division. Default '' returns all. Required.
+        :type vs_division: nba.enums.VsDivision
+        :param game_segment: Filter to include only certain parts of games. Default '' includes entire games.
+        :type game_segment: nba.enums.GameSegment
+        :param period: Filter stats for only those pertaining to a certain period of games. Default '' includes entire games. Required
+        :type period: nba.enums.Period
+        :param last_n_games: Filter stats for only those occurring in the last n games. Default '' includes entire games. Required.
+        :type last_n_games: nba.enums.LastNGames
+        :param player_experience: Filter to only include players of specific experience level. Default '' returns all. Required.
+        :type player_experience: nba.enums.PlayerExperience
+        :param player_position: Filter to only include players of certain position. Default '' returns all. Required.
+        :type player_position: nba.enums.PlayerPosition
+        :param team_id: ID of specific team to filter. Default 0, returns all.
+        :type team_id: nba.enums.TeamID
+        :param college: Filter for players attending specific college. Default '' returns all.
+        :type college: nba.enums.College
+        :param conference: Filter for players from specific conference. Default '' returns all.
+        :type conference: nba.enums.Conference
+        :param country: Filter for players from specific country. Default '' returns all.
+        :type country: nba.enums.Country
+        :param division: Filter by specific division. Default '' returns all.
+        :type division: nba.enums.Division
+        :param draft_pick: Filter by players pick in the draft. Default '' returns all.
+        :type draft_pick: nba.enums.DraftPick
+        :param draft_year: Filter by year of the players draft. Default '' returns all.
+        :type draft_year: nba.enums.DraftYear
+        :param height: Filter by players height (doesn't appear to work). Default '' returns all.
+        :type height: nba.enums.Height
+        :param weight: Filter by players weight in lbs. Default '' returns all.
+        :type weight: nba.enums.Weight
+        :param po_round: Filter to only include stats for specific playoff round games. Default '' returns all.
+        :type po_round: nba.enums.PORound
+        :param shot_clock_range: Filter to specific shot clock time windows. Default '' returns all.
+        :type shot_clock_range: nba.enums.ShotClockRange
+        :returns: Player clutch stats after applying all filters.
+        :rtype: DataFrame
+
+         """
+        params = clean_locals(locals())
+        endpoint = 'leaguehustlestatsplayer'
+        r = self.request(endpoint, params)
+        df = self.process_response(r, 0, 'resultSets')
+        return df
+
     def all_shot_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                        season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
                        close_def_dist_range=enums.CloseDefDistRange.Default, dribble_range=enums.DribbleRange.All,

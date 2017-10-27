@@ -418,6 +418,83 @@ class Team(BaseEndpoint):
         df = self.process_response(r, 0, 'resultSets')
         return df
 
+    def all_opponent_shot_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
+                                season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
+                                close_def_dist_range=enums.CloseDefDistRange.Default, dribble_range=enums.DribbleRange.All,
+                                shot_clock_range=enums.ShotClockRange.Default, shot_dist_range=enums.Default_Values.Blank,
+                                touch_time_range=enums.Default_Values.Blank, general_range=enums.Default_Values.Blank,
+                                team_id=enums.TeamID.Default, conference=enums.Conference.Default,
+                                date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, division=enums.Division.Default,
+                                game_segment=enums.GameSegment.Default, period=enums.Period.Default,
+                                last_n_games=enums.LastNGames.Default, po_round=enums.PORound.Default,
+                                location=enums.Location.Default, month=enums.Month.Default,
+                                opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
+                                season_segment=enums.SeasonSegment.Default, vs_conference=enums.VsConference.Default,
+                                vs_division=enums.VsDivision.Default):
+        """
+        Team opponent shot stats breakdown.
+
+        :param league_id: ID of the league to get data for. Default 00. Required.
+        :type league_id: nba.enums.LeagueID
+        :param season: Season to get players from. Required.
+        :type season: nba.enums.Season
+        :param season_type: part of season to pull data from. Required.
+        :type season_type: nba.enums.SeasonType
+        :param per_mode: grouping of stat data. Totals or PerGame accepted. Required.
+        :type per_mode: nba.enums.PerMode
+        :param close_def_dist_range: Filter stats to include of shots with specific closest defender range. Default '' returns all.
+        :type close_def_dist_range: nba.enums.CloseDefDistRange
+        :param dribble_range: Filter stats to include only shots where specific no. of dribbles occured. Default '' returns all.
+        :type dribble_range: nba.enums.DribbleRange
+        :param shot_clock_range: Filter to specific shot clock time windows. Default '' returns all.
+        :type shot_clock_range: nba.enums.ShotClockRange
+        :param shot_dist_range: Filter stats to include only shots in specified distance range. Default '' returns all.
+        :type shot_dist_range: unsure.
+        :param touch_time_range: Filter by how long ball is held prior to shot. Default '' returns all.
+        :type touch_time_range: unsure.
+        :param general_range: No idea what this does.
+        :type general_range: unsure.
+        :param team_id: ID of specific team to filter. Default 0, returns all.
+        :type team_id: nba.enums.TeamID
+        :param conference: Filter for players from specific conference. Default '' returns all.
+        :type conference: nba.enums.Conference
+        :param date_from: Minimum date cutoff to include data from. Default '' returns all.
+        :type date_from: nba.enums.DateFrom
+        :param date_to:  Maximum date cutoff to include data to. Default '' returns all.
+        :type date_to: nba.enums.DateTo
+        :param division: Filter by specific division. Default '' returns all.
+        :type division: nba.enums.Division
+        :param game_segment: Filter to include only certain parts of games. Default '' includes entire games.
+        :type game_segment: nba.enums.GameSegment
+        :param period: Filter stats for only those pertaining to a certain period of games. Default '' includes entire games.
+        :type period: nba.enums.Period
+        :param last_n_games: Filter stats for only those occurring in the last n games. Default '' includes entire games.
+        :type last_n_games: nba.enums.LastNGames
+        :param location: Filter for home or road games only. Default '' returns all.
+        :type location: nba.enums.Location
+        :param month: Filter for games occurring in a specific month (relative to season start). Default 0 returns all.
+        :type month: nba.enums.Month
+        :param opponent_team_id: Filter to only include stats for games against a specific team. Default 0 returns all.
+        :type opponent_team_id: nba.enums.TeamID
+        :param outcome: Filter to only include stats for won or lost games. Default '' returns all.
+        :type outcome: nba.enums.Outcome
+        :param po_round: Filter to only include stats for specific playoff round games. Default '' returns all.
+        :type po_round: nba.enums.PORound
+        :param season_segment: Filter to only include stats from Post/Pre all star break. Default '' returns all.
+        :type season_segment: nba.enums.SeasonSegment
+        :param vs_conference: Filter to only include stats for games against specific conference. Default '' returns all.
+        :type vs_conference: nba.enums.VsConference
+        :param vs_division: Filter to only include stats for games against specific division. Default '' returns all.
+        :type vs_division: nba.enums.VsDivision
+        :returns: Team shot stats after applying all filters.
+        :rtype: DataFrame
+        """
+        params = clean_locals(locals())
+        endpoint = 'leaguedashoppptshot'
+        r = self.request(endpoint, params)
+        df = self.process_response(r, 0, 'resultSets')
+        return df
+
     def all_defensive_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                             season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
                             defense_category=enums.DefenseCategory.Default, conference=enums.Conference.Default,
@@ -577,6 +654,87 @@ class Team(BaseEndpoint):
         r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
+
+    def all_hustle_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
+                         season_type=enums.SeasonType.Default, game_scope=enums.GameScope.Blank,
+                         player_experience=enums.PlayerExperience.Default, player_position=enums.PlayerPosition.Default,
+                         per_mode=enums.PerMode.Default, plus_minus=enums.PlusMinus.Default,
+                         pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default, outcome=enums.Outcome.Default,
+                         location=enums.Location.Default, month=enums.Month.Default,
+                         season_segment=enums.SeasonSegment.Default, date_from=enums.DateFrom.Default,
+                         date_to=enums.DateTo.Default, opponent_team_id=enums.OpponentTeamID.Default,
+                         vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default,
+                         game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
+                         last_n_games=enums.LastNGames.Default, conference=enums.Conference.Default,
+                         division=enums.Division.Default, team_id=enums.TeamID.Default, po_round=enums.PORound.Default,
+                         shot_clock_range=enums.ShotClockRange.Default):
+        """
+        Team clutch stats breakdown.
+
+        :param league_id: ID of the league to get data for. Default 00. Required.
+        :type league_id: nba.enums.LeagueID
+        :param season: Season to get teams data from. Required.
+        :type season: nba.enums.Season
+        :param season_type: part of season to pull data from. Required.
+        :type season_type: nba.enums.SeasonType
+        :param game_scope: Filter for games to include, Last 10 or Yesterday accepted. Default '' returns all. Required
+        :type game_scope: nba.enums.GameScope
+        :param plus_minus: whether to have stats as PlusMinus, Y|N. Default N. Required.
+        :type plus_minus: nba.enums.PlusMinus
+        :param pace_adjust: whether to have stats as adjusted for pace, Y|N. Default N. Required.
+        :type pace_adjust: nba.enums.PaceAdjust
+        :param rank: whether to include stat ranks, Y|N. Default N. Required
+        :type rank: nba.enums.Rank
+        :param per_mode: grouping of stat data. Totals or PerGame accepted. Required.
+        :type per_mode: nba.enums.PerMode
+        :param outcome: Filter to only include stats for won or lost games. Default '' returns all. Required.
+        :type outcome: nba.enums.Outcome
+        :param location: Filter for home or road games only. Default '' returns all. Required.
+        :type location: nba.enums.Location
+        :param month: Filter for games occurring in a specific month (relative to season start). Default 0 returns all. Required.
+        :type month: nba.enums.Month
+        :param season_segment: Filter to only include stats from Post/Pre all star break. Default '' returns all. Required
+        :type season_segment: nba.enums.SeasonSegment
+        :param date_from: Minimum date cutoff to include data from. Default '' returns all. Required.
+        :type date_from: nba.enums.DateFrom
+        :param date_to:  Maximum date cutoff to include data to. Default '' returns all. Required.
+        :type date_to: nba.enums.DateTo
+        :param opponent_team_id: Filter to only include stats for games against a specific team. Default 0 returns all. Required.
+        :type opponent_team_id: nba.enums.TeamID
+        :param vs_conference: Filter to only include stats for games against specific conference. Default '' returns all. Required
+        :type vs_conference: nba.enums.VsConference
+        :param vs_division: Filter to only include stats for games against specific division. Default '' returns all. Required.
+        :type vs_division: nba.enums.VsDivision
+        :param game_segment: Filter to include only certain parts of games. Default '' includes entire games.
+        :type game_segment: nba.enums.GameSegment
+        :param period: Filter stats for only those pertaining to a certain period of games. Default '' includes entire games. Required
+        :type period: nba.enums.Period
+        :param last_n_games: Filter stats for only those occurring in the last n games. Default '' includes entire games. Required.
+        :type last_n_games: nba.enums.LastNGames
+        :param player_experience: Filter to only include players of specific experience level. Default '' returns all. Required.
+        :type player_experience: nba.enums.PlayerExperience
+        :param player_position: Filter to only include players of certain position. Default '' returns all. Required.
+        :type player_position: nba.enums.PlayerPosition
+        :param team_id: ID of specific team to filter. Default 0, returns all.
+        :type team_id: nba.enums.TeamID
+        :param conference: Filter for players from specific conference. Default '' returns all.
+        :type conference: nba.enums.Conference
+        :param division: Filter by specific division. Default '' returns all.
+        :type division: nba.enums.Division
+        :param po_round: Filter to only include stats for specific playoff round games. Default '' returns all.
+        :type po_round: nba.enums.PORound
+        :param shot_clock_range: Filter to specific shot clock time windows. Default '' returns all.
+        :type shot_clock_range: nba.enums.ShotClockRange
+        :returns: Team clutch stats after applying all filters.
+        :rtype: DataFrame
+
+         """
+        params = clean_locals(locals())
+        endpoint = 'leaguehustlestatsteam'
+        r = self.request(endpoint, params)
+        df = self.process_response(r, 0, 'resultSets')
+        return df
+
 
     def team_passing_stats(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                            season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
@@ -1570,7 +1728,7 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamgamelog'
+        endpoint = 'teamgamelogs'
         r = self.request(endpoint, params)
         df = self.process_response(r, 0, 'resultSets')
         return df
