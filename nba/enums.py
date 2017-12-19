@@ -276,7 +276,7 @@ class OpponentTeamID(_DefaultZero):
     pass
 
 
-class Period(_DefaultBlank):
+class Period(_DefaultZero):
     AllQuarters = '0'
     FirstQuarter = '1'
     SecondQuarter = '2'

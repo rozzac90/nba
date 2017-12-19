@@ -1,5 +1,6 @@
 
 import datetime
+import requests
 import pandas as pd
 
 from nba import enums
@@ -64,7 +65,7 @@ class Misc(BaseEndpoint):
         
         :return: News updates.
         """
-        url = r'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player'
-        r = self.request(None, request_url=url)
+        url = 'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player'
+        r = requests.get(url).json()
         df = pd.DataFrame(r.get('ListItems', []))
         return df

@@ -26,13 +26,9 @@ class BaseEndpoint(object):
         session = session or self.client.session
         if request_url is None:
             request_url = '%s%s' % (self.client.url, method)
-        response = session.request(
-            'GET', request_url, params=params, data=json.dumps(data), headers=self.client.headers,
-        )
+        response = session.get(request_url, params=params, data=json.dumps(data), headers=self.client.headers)
         if response.status_code == 400:
-            response = session.request(
-                'GET', request_url, params=params, data=json.dumps(data), headers=self.client.headers
-            )
+            response = session.get(request_url, params=params, data=json.dumps(data), headers=self.client.headers)
         check_status_code(response)
         return response.json()
 
