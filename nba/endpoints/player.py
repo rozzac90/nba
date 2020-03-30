@@ -10,7 +10,7 @@ class Player(BaseEndpoint):
     
     def all_ranked_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
                          season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                         stat_category=enums.Stat.PTS, scope=enums.Scope.Default, active_flag=True):
+                         stat_category=enums.Stat.PTS, scope=enums.Scope.Default):
         """
         Player ranked stats breakdown.
     
@@ -26,8 +26,6 @@ class Player(BaseEndpoint):
         :type stat_category: nba.enums.Stat
         :param scope: defines the type of players to include. Default 'S' returns all. Required.
         :type scope: nba.enums.Scope
-        :param active_flag: whether to only include active players. Default True.
-        :returns: players ranked by stat specified.
         :rtype: DataFrame
     
         """
@@ -120,7 +118,7 @@ class Player(BaseEndpoint):
         """
         params = clean_locals(locals())
         endpoint = 'leaguedashplayerbiostats'
-        r = self.request(endpoint, params)
+        r = self.request(endpoint, params, referer='bio')
         df = self.process_response(r, 0, 'resultSets')
         return df
 

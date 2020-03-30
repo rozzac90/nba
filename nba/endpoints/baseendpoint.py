@@ -15,7 +15,7 @@ class BaseEndpoint(object):
         self.client = parent
 
     @lru_cache(maxsize=16)
-    def request(self, method, params=HDict({}), data=HDict({}), session=None, request_url=None):
+    def request(self, method, params=HDict({}), data=HDict({}), session=None, request_url=None, referer='stats'):
         """
         :param method: NBA API method to be used.
         :param params: Params to be used in request.
@@ -26,9 +26,10 @@ class BaseEndpoint(object):
         session = session or self.client.session
         if request_url is None:
             request_url = '%s%s' % (self.client.url, method)
-        response = session.get(request_url, params=params, data=json.dumps(data), headers=self.client.headers)
+        headers = {**self.client.headers, **{'Referer': f'http://stats.nba.com/{referer}/'}}
+        response = session.get(request_url, params=params, data=json.dumps(data), headers=headers)
         if response.status_code == 400:
-            response = session.get(request_url, params=params, data=json.dumps(data), headers=self.client.headers)
+            response = session.get(request_url, params=params, data=json.dumps(data), headers=headers)
         check_status_code(response)
         return response.json()
 

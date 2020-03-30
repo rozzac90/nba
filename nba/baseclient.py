@@ -18,7 +18,6 @@ class BaseClient(object):
             'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
                         'AppleWebKit/537.36 (KHTML, like Gecko)'
                         'Chrome/60.0.3112.90 Safari/537.36'),
-            'Referer': 'http://stats.nba.com/scores/',
             'Host': 'stats.nba.com',
             "Cache-Control": "max-age=0",
             'Connection': 'keep-alive',
