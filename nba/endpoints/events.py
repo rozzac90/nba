@@ -1,4 +1,3 @@
-
 import pandas as pd
 
 from nba.utils import clean_locals
@@ -6,7 +5,6 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class Events(BaseEndpoint):
-
     def get_moments(self, game_id, event_id):
         """
         ***Blocked Cannot Access***
@@ -20,19 +18,30 @@ class Events(BaseEndpoint):
         :rtype: DataFrame
     
         """
-        raise DeprecationWarning('This endpoint has been closed to public access')
-        endpoint = 'locations_getmoments'
+        raise DeprecationWarning("This endpoint has been closed to public access")
+        endpoint = "locations_getmoments"
         params = clean_locals(locals())
         r = self.request(endpoint, params)
         if len(r) > 0:
             try:
-                headers = ["TeamID", "PlayerID", "x_loc", "y_loc", "Radius",
-                           "MomentID", "GameClock", "ShotClock", "EventID"]
+                headers = [
+                    "TeamID",
+                    "PlayerID",
+                    "x_loc",
+                    "y_loc",
+                    "Radius",
+                    "MomentID",
+                    "GameClock",
+                    "ShotClock",
+                    "EventID",
+                ]
                 player_moments = []
-                moments = r['moments']
+                moments = r["moments"]
                 for moment in moments:
                     for player in moment[5]:
-                        player.extend((moments.index(moment), moment[2], moment[3], event_id))
+                        player.extend(
+                            (moments.index(moment), moment[2], moment[3], event_id)
+                        )
                         player_moments.append(player)
                 df = pd.DataFrame(player_moments, columns=headers)
             except:
@@ -54,21 +63,32 @@ class Events(BaseEndpoint):
         :rtype: Dataframe
     
         """
-        raise DeprecationWarning('This endpoint has been closed to public access')
-        endpoint = 'locations_getmoments'
+        raise DeprecationWarning("This endpoint has been closed to public access")
+        endpoint = "locations_getmoments"
         df = pd.DataFrame()
         for i in range(1, int(limit)):
-            params = {'GameID': game_id, 'EventID': str(i)}
+            params = {"GameID": game_id, "EventID": str(i)}
             r = self.request(endpoint, params)
             if len(r) > 0:
                 try:
-                    headers = ["TeamID", "PlayerID", "x_loc", "y_loc", "Radius",
-                               "MomentID", "GameClock", "ShotClock", "EventID"]
+                    headers = [
+                        "TeamID",
+                        "PlayerID",
+                        "x_loc",
+                        "y_loc",
+                        "Radius",
+                        "MomentID",
+                        "GameClock",
+                        "ShotClock",
+                        "EventID",
+                    ]
                     player_moments = []
-                    moments = r['moments']
+                    moments = r["moments"]
                     for moment in moments:
                         for player in moment[5]:
-                            player.extend((moments.index(moment), moment[2], moment[3], i))
+                            player.extend(
+                                (moments.index(moment), moment[2], moment[3], i)
+                            )
                             player_moments.append(player)
                     temp = pd.DataFrame(player_moments, columns=headers)
                     df = pd.concat([df, temp])

@@ -1,4 +1,3 @@
-
 import datetime
 import requests
 import pandas as pd
@@ -9,8 +8,9 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class Misc(BaseEndpoint):
-    
-    def play_off_picture(self, idx_data, league_id=enums.LeagueID.Default, season_id=enums.Season.Default):
+    def play_off_picture(
+        self, idx_data, league_id=enums.LeagueID.Default, season_id=enums.Season.Default
+    ):
         """
         Get information on how current playoff matchups and conference standings are.
     
@@ -36,12 +36,16 @@ class Misc(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'playoffpicture'
+        endpoint = "playoffpicture"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def video_status(self, game_date=datetime.datetime.today().strftime('%Y-%m-%d'), league_id=enums.LeagueID.Default):
+    def video_status(
+        self,
+        game_date=datetime.datetime.today().strftime("%Y-%m-%d"),
+        league_id=enums.LeagueID.Default,
+    ):
         """
         Breakdown of which games are available on video on a given date.
     
@@ -54,9 +58,9 @@ class Misc(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'videoStatus'
+        endpoint = "videoStatus"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
     def rotowire_player_news(self):
@@ -65,7 +69,7 @@ class Misc(BaseEndpoint):
         
         :return: News updates.
         """
-        url = 'http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player'
+        url = "http://stats-prod.nba.com/wp-json/statscms/v1/rotowire/player"
         r = requests.get(url).json()
-        df = pd.DataFrame(r.get('ListItems', []))
+        df = pd.DataFrame(r.get("ListItems", []))
         return df

@@ -1,14 +1,19 @@
-
 from nba import enums
 from nba.utils import clean_locals
 from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class Boxscores(BaseEndpoint):
-
-    def advanced(self, game_id, idx_data, start_period=enums.StartPeriod.Default, end_period=enums.EndPeriod.Default,
-                 start_range=enums.StartRange.Default, end_range=enums.EndRange.Default,
-                 range_type=enums.RangeType.Default):
+    def advanced(
+        self,
+        game_id,
+        idx_data,
+        start_period=enums.StartPeriod.Default,
+        end_period=enums.EndPeriod.Default,
+        start_range=enums.StartRange.Default,
+        end_range=enums.EndRange.Default,
+        range_type=enums.RangeType.Default,
+    ):
         """
         Get advanced box score stats for a given game.
     
@@ -38,14 +43,21 @@ class Boxscores(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'boxscoreadvancedv2'
+        endpoint = "boxscoreadvancedv2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def four_factors(self, game_id, idx_data, start_period=enums.StartPeriod.Default,
-                     end_period=enums.EndPeriod.Default, start_range=enums.StartRange.Default,
-                     end_range=enums.EndRange.Default, range_type=enums.RangeType.Default):
+    def four_factors(
+        self,
+        game_id,
+        idx_data,
+        start_period=enums.StartPeriod.Default,
+        end_period=enums.EndPeriod.Default,
+        start_range=enums.StartRange.Default,
+        end_range=enums.EndRange.Default,
+        range_type=enums.RangeType.Default,
+    ):
         """
         Get four factors stats for a given game.
     
@@ -75,14 +87,21 @@ class Boxscores(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'boxscorefourfactorsv2'
+        endpoint = "boxscorefourfactorsv2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def miscellaneous(self, game_id, idx_data, start_period=enums.StartPeriod.Default,
-                      end_period=enums.EndPeriod.Default, start_range=enums.StartRange.Default,
-                      end_range=enums.EndRange.Default, range_type=enums.RangeType.Default):
+    def miscellaneous(
+        self,
+        game_id,
+        idx_data,
+        start_period=enums.StartPeriod.Default,
+        end_period=enums.EndPeriod.Default,
+        start_range=enums.StartRange.Default,
+        end_range=enums.EndRange.Default,
+        range_type=enums.RangeType.Default,
+    ):
         """
         Get miscellaneous stats for a given game.
     
@@ -112,14 +131,21 @@ class Boxscores(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'boxscoremiscv2'
+        endpoint = "boxscoremiscv2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def scoring(self, game_id, idx_data, start_period=enums.StartPeriod.Default, end_period=enums.EndPeriod.Default,
-                start_range=enums.StartRange.Default, end_range=enums.EndRange.Default,
-                range_type=enums.RangeType.Default):
+    def scoring(
+        self,
+        game_id,
+        idx_data,
+        start_period=enums.StartPeriod.Default,
+        end_period=enums.EndPeriod.Default,
+        start_range=enums.StartRange.Default,
+        end_range=enums.EndRange.Default,
+        range_type=enums.RangeType.Default,
+    ):
         """
         Get scoring stats for a given game.
     
@@ -149,14 +175,21 @@ class Boxscores(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'boxscorescoringv2'
+        endpoint = "boxscorescoringv2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def traditional(self, game_id, idx_data, start_period=enums.StartPeriod.Default, end_period=enums.EndPeriod.Default,
-                    start_range=enums.StartRange.Default, end_range=enums.EndRange.Default,
-                    range_type=enums.RangeType.Default):
+    def traditional(
+        self,
+        game_id,
+        idx_data,
+        start_period=enums.StartPeriod.Default,
+        end_period=enums.EndPeriod.Default,
+        start_range=enums.StartRange.Default,
+        end_range=enums.EndRange.Default,
+        range_type=enums.RangeType.Default,
+    ):
         """
         Get traditional box score stats for a given game.
     
@@ -187,14 +220,21 @@ class Boxscores(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'boxscoretraditionalv2'
+        endpoint = "boxscoretraditionalv2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def usage(self, game_id, idx_data, start_period=enums.StartPeriod.Default, end_period=enums.EndPeriod.Default,
-              start_range=enums.StartRange.Default, end_range=enums.EndRange.Default,
-              range_type=enums.RangeType.Default):
+    def usage(
+        self,
+        game_id,
+        idx_data,
+        start_period=enums.StartPeriod.Default,
+        end_period=enums.EndPeriod.Default,
+        start_range=enums.StartRange.Default,
+        end_range=enums.EndRange.Default,
+        range_type=enums.RangeType.Default,
+    ):
         """
         Get usage stats for a given game.
     
@@ -225,14 +265,21 @@ class Boxscores(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'boxscoreusagev2'
+        endpoint = "boxscoreusagev2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def summary(self, game_id, idx_data, start_period=enums.StartPeriod.Default, end_period=enums.EndPeriod.Default,
-                start_range=enums.StartRange.Default, end_range=enums.EndRange.Default,
-                range_type=enums.RangeType.Default):
+    def summary(
+        self,
+        game_id,
+        idx_data,
+        start_period=enums.StartPeriod.Default,
+        end_period=enums.EndPeriod.Default,
+        start_range=enums.StartRange.Default,
+        end_range=enums.EndRange.Default,
+        range_type=enums.RangeType.Default,
+    ):
         """
         Get high level game summary stats for a given game.
     
@@ -269,14 +316,21 @@ class Boxscores(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'boxscoresummaryv2'
+        endpoint = "boxscoresummaryv2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def player_tracking(self, game_id, idx_data, start_period=enums.StartPeriod.Default,
-                        end_period=enums.EndPeriod.Default, start_range=enums.StartRange.Default,
-                        end_range=enums.EndRange.Default, range_type=enums.RangeType.Default):
+    def player_tracking(
+        self,
+        game_id,
+        idx_data,
+        start_period=enums.StartPeriod.Default,
+        end_period=enums.EndPeriod.Default,
+        start_range=enums.StartRange.Default,
+        end_range=enums.EndRange.Default,
+        range_type=enums.RangeType.Default,
+    ):
         """
         Get player tracking box score stats for a given game.
     
@@ -306,7 +360,7 @@ class Boxscores(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'boxscoreplayertrackv2'
+        endpoint = "boxscoreplayertrackv2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df

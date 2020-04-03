@@ -1,4 +1,3 @@
-
 import requests
 
 from nba import enums
@@ -7,8 +6,12 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class PlayByPlay(BaseEndpoint):
-
-    def play_by_play(self, game_id, start_period=enums.StartPeriod.AllQuarters, end_period=enums.EndPeriod.AllQuarters):
+    def play_by_play(
+        self,
+        game_id,
+        start_period=enums.StartPeriod.AllQuarters,
+        end_period=enums.EndPeriod.AllQuarters,
+    ):
         """
         Play by play data for a given game, comments from home, away and neutral perspective.
     
@@ -23,12 +26,12 @@ class PlayByPlay(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'playbyplayv2'
+        endpoint = "playbyplayv2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def play_by_play_detailed(self, game_id, locale='en', period='all'):
+    def play_by_play_detailed(self, game_id, locale="en", period="all"):
         """
         Get detailed play by play including location data from nba stats2.
         
@@ -38,9 +41,14 @@ class PlayByPlay(BaseEndpoint):
         :return: 
         """
         params = clean_locals(locals())
-        response = requests.get('http://uk.global.nba.com/stats2/game/playbyplay.json',
-                                {'gameId': game_id, 'locale': locale, 'period': period})
+        response = requests.get(
+            "http://uk.global.nba.com/stats2/game/playbyplay.json",
+            {"gameId": game_id, "locale": locale, "period": period},
+        )
         check_status_code(response)
-        data = [events for period in response.json().get('payload', {}).get('playByPlays', {}) for events in
-                period.get('events', [])]
+        data = [
+            events
+            for period in response.json().get("payload", {}).get("playByPlays", {})
+            for events in period.get("events", [])
+        ]
         return data[::-1]

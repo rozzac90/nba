@@ -1,4 +1,3 @@
-
 import datetime
 from nba.exceptions import ApiError
 
@@ -12,7 +11,7 @@ def clean_time(col):
     :rtype: series
 
     """
-    return col.apply(lambda x: datetime.datetime.strptime(x, '%Y-%m-%dT%H:%M:%S.%fZ'))
+    return col.apply(lambda x: datetime.datetime.strptime(x, "%Y-%m-%dT%H:%M:%S.%fZ"))
 
 
 def filter_dicts(d):
@@ -38,15 +37,22 @@ def clean_locals(params):
     :rtype: dict
     """
     return HDict(
-        dict((clean_param_key(k), HDict(v)) if isinstance(v, dict)
-             else (clean_param_key(k), tuple(v)) if isinstance(v, list)
-             else (clean_param_key(k), v)
-             for k, v in params.items() if v is not None and k not in ['self', 'session', 'idx_data'])
+        dict(
+            (clean_param_key(k), HDict(v))
+            if isinstance(v, dict)
+            else (clean_param_key(k), tuple(v))
+            if isinstance(v, list)
+            else (clean_param_key(k), v)
+            for k, v in params.items()
+            if v is not None and k not in ["self", "session", "idx_data"]
+        )
     )
 
 
 def clean_param_key(key):
-    return ''.join([k.upper() if k in ['id', 'po'] else k.title() for k in key.split('_')])
+    return "".join(
+        [k.upper() if k in ["id", "po"] else k.title() for k in key.split("_")]
+    )
 
 
 def check_status_code(response, codes=None):

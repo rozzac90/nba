@@ -1,6 +1,6 @@
 import json
 
-if not hasattr(json, 'JSONDecodeError'):
+if not hasattr(json, "JSONDecodeError"):
     json.JSONDecodeError = ValueError
 else:
     from json.decoder import JSONDecodeError
@@ -15,11 +15,10 @@ class ApiError(NBAError):
         self.response = response
         self.status_code = response.status_code
         try:
-            error_data = response.json().get('errors')
-            self.message = error_data[0].get('messages', 'UNKNOWN')
+            error_data = response.json().get("errors")
+            self.message = error_data[0].get("messages", "UNKNOWN")
 
         except (KeyError, JSONDecodeError, TypeError):
-            self.message = 'UNKNOWN'
+            self.message = "UNKNOWN"
             print(response)
         super(ApiError, self).__init__(self.message)
-

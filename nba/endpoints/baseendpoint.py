@@ -1,4 +1,3 @@
-
 import json
 import pandas as pd
 from functools import lru_cache
@@ -7,7 +6,6 @@ from nba.utils import check_status_code, HDict
 
 
 class BaseEndpoint(object):
-
     def __init__(self, parent):
         """
         :param parent: API client.
@@ -15,7 +13,15 @@ class BaseEndpoint(object):
         self.client = parent
 
     @lru_cache(maxsize=16)
-    def request(self, method, params=HDict({}), data=HDict({}), session=None, request_url=None, referer='stats'):
+    def request(
+        self,
+        method,
+        params=HDict({}),
+        data=HDict({}),
+        session=None,
+        request_url=None,
+        referer="stats",
+    ):
         """
         :param method: NBA API method to be used.
         :param params: Params to be used in request.
@@ -25,11 +31,19 @@ class BaseEndpoint(object):
         """
         session = session or self.client.session
         if request_url is None:
-            request_url = '%s%s' % (self.client.url, method)
-        headers = {**self.client.headers, **{'Referer': f'http://stats.nba.com/{referer}/'}}
-        response = session.get(request_url, params=params, data=json.dumps(data), headers=headers)
+            request_url = "%s%s" % (self.client.url, method)
+        headers = {
+            **self.client.headers,
+            **{"Referer": f"http://stats.nba.com/{referer}/"},
+        }
+        response = session.get(
+            request_url, params=params, data=json.dumps(data), headers=headers
+        )
+        print(response.content)
         if response.status_code == 400:
-            response = session.get(request_url, params=params, data=json.dumps(data), headers=headers)
+            response = session.get(
+                request_url, params=params, data=json.dumps(data), headers=headers
+            )
         check_status_code(response)
         return response.json()
 
@@ -49,9 +63,9 @@ class BaseEndpoint(object):
 
         """
         try:
-            headers = response_json[result_name][idx_val]['headers']
-            values = response_json[result_name][idx_val]['rowSet']
+            headers = response_json[result_name][idx_val]["headers"]
+            values = response_json[result_name][idx_val]["rowSet"]
         except KeyError:
-            headers = response_json[result_name]['headers']
-            values = response_json[result_name]['rowSet']
-        return pd.DataFrame(values, columns=headers)
+            headers = response_json[result_name]["headers"]
+            values = response_json[result_name]["rowSet"]
+        return pd.DataFrame(values, columns=[h.lower() for h in headers])

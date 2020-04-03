@@ -1,12 +1,12 @@
-
 from nba import enums
 from nba.utils import clean_locals
 from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class Draft(BaseEndpoint):
-    
-    def combine_drill_results(self, league_id=enums.LeagueID.Default, season_year='2016-17'):
+    def combine_drill_results(
+        self, league_id=enums.LeagueID.Default, season_year="2016-17"
+    ):
         """
         Combine drill results for a given year.
     
@@ -19,12 +19,14 @@ class Draft(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'draftcombinedrillresults'
+        endpoint = "draftcombinedrillresults"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
-    
-    def combine_stationary_shooting(self, league_id=enums.LeagueID.Default, season_year='2016-17'):
+
+    def combine_stationary_shooting(
+        self, league_id=enums.LeagueID.Default, season_year="2016-17"
+    ):
         """
         Moving shooting scores broken down by movement type.
     
@@ -37,12 +39,14 @@ class Draft(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'draftcombinenonstationaryshooting'
+        endpoint = "draftcombinenonstationaryshooting"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
-    
-    def combine_player_anthropology(self, league_id=enums.LeagueID.Default, season_year='2016-17'):
+
+    def combine_player_anthropology(
+        self, league_id=enums.LeagueID.Default, season_year="2016-17"
+    ):
         """
         Detailed breakdown of players measurements and physical stats.
     
@@ -55,12 +59,14 @@ class Draft(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'draftcombineplayeranthro'
+        endpoint = "draftcombineplayeranthro"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
-    
-    def combine_spot_shooting(self, league_id=enums.LeagueID.Default, season_year='2016-17'):
+
+    def combine_spot_shooting(
+        self, league_id=enums.LeagueID.Default, season_year="2016-17"
+    ):
         """
         Get raw and pct shooting results from draft combine for a given year.
     
@@ -73,12 +79,12 @@ class Draft(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'draftcombinespotshooting'
+        endpoint = "draftcombinespotshooting"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
-    
-    def combine_stats(self, league_id=enums.LeagueID.Default, season_year='2016-17'):
+
+    def combine_stats(self, league_id=enums.LeagueID.Default, season_year="2016-17"):
         """
         Get combine results for a draft year.
     
@@ -91,11 +97,11 @@ class Draft(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'draftcombinestats'
+        endpoint = "draftcombinestats"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
-    
+
     def history(self, league_id=enums.LeagueID.Default):
         """
         Breakdown of pick number and player data for historical drafts.
@@ -107,7 +113,7 @@ class Draft(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'drafthistory'
+        endpoint = "drafthistory"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df

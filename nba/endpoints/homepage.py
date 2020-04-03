@@ -1,15 +1,20 @@
-
 from nba import enums
 from nba.utils import clean_locals
 from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class Homepage(BaseEndpoint):
-
-    def leaders(self, idx_data, league_id=enums.LeagueID.Default, stat_category=enums.StatCategory.Default,
-                season=enums.Season.Default, season_type=enums.SeasonType.Default,
-                player_or_team=enums.PlayerOrTeam.Default, game_scope=enums.GameScope.Default,
-                player_scope=enums.PlayerScope.Default):
+    def leaders(
+        self,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        stat_category=enums.StatCategory.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        player_or_team=enums.PlayerOrTeam.Default,
+        game_scope=enums.GameScope.Default,
+        player_scope=enums.PlayerScope.Default,
+    ):
         """
         Get top 5 players/teams by a particular stat.
     
@@ -42,15 +47,22 @@ class Homepage(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'homepageleaders'
+        endpoint = "homepageleaders"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def other_leaders(self, idx_data, league_id=enums.LeagueID.Default, stat_type=enums.StatType.Default,
-                      season=enums.Season.Default, season_type=enums.SeasonType.Default,
-                      player_or_team=enums.PlayerOrTeam.Default, game_scope=enums.GameScope.Default,
-                      player_scope=enums.PlayerScope.Default):
+    def other_leaders(
+        self,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        stat_type=enums.StatType.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        player_or_team=enums.PlayerOrTeam.Default,
+        game_scope=enums.GameScope.Default,
+        player_scope=enums.PlayerScope.Default,
+    ):
         """
        Get top 5 players/teams by a particular stat type.
     
@@ -88,15 +100,22 @@ class Homepage(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'homepagev2'
+        endpoint = "homepagev2"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def leaders_tiles(self, idx_data, league_id=enums.LeagueID.Default, stat=enums.Stat.Default,
-                      season=enums.Season.Default, season_type=enums.SeasonType.Default,
-                      player_or_team=enums.PlayerOrTeam.Default, game_scope=enums.GameScope.Default,
-                      player_scope=enums.PlayerScope.Default):
+    def leaders_tiles(
+        self,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        stat=enums.Stat.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        player_or_team=enums.PlayerOrTeam.Default,
+        game_scope=enums.GameScope.Default,
+        player_scope=enums.PlayerScope.Default,
+    ):
         """
         Get top 5 players/teams by a particular stat.
     
@@ -130,7 +149,7 @@ class Homepage(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'leaderstiles'
+        endpoint = "leaderstiles"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSet')
+        df = self.process_response(r, idx_data, "resultSet")
         return df

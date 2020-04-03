@@ -1,4 +1,3 @@
-
 import requests
 import pandas as pd
 
@@ -8,22 +7,54 @@ from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class Team(BaseEndpoint):
+    def team_details(self, team_id, idx_data):
+        params = clean_locals(locals())
+        endpoint = "teamdetails"
+        r = self.request(endpoint, params)
+        df = self.process_response(r, idx_data, "resultSets")
+        return df
 
-    def all_raw_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default, 
-                      season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default, 
-                      measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default, 
-                      pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default, 
-                      shot_clock_range=enums.ShotClockRange.Default, game_scope=enums.GameScope.Blank, 
-                      team_id=enums.TeamID.Default, college=enums.College.Default, conference=enums.Conference.Default, 
-                      country=enums.Country.Default, date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, 
-                      division=enums.Division.Default, game_segment=enums.GameSegment.Default, 
-                      period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                      location=enums.Location.Default, month=enums.Month.Default, 
-                      opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default, 
-                      po_round=enums.PORound.Default, player_experience=enums.PlayerExperience.Default, 
-                      player_position=enums.PlayerPosition.Default, season_segment=enums.SeasonSegment.Default, 
-                      starter_bench=enums.StarterBench.Default, vs_conference=enums.VsConference.Default, 
-                      vs_division=enums.VsDivision.Default):
+    def franchise_leaders(self, team_id):
+        params = clean_locals(locals())
+        endpoint = "franchiseleaders"
+        r = self.request(endpoint, params)
+        df = self.process_response(r, 0, "resultSets")
+        return df
+
+    def all_raw_stats(
+        self,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        game_scope=enums.GameScope.Blank,
+        team_id=enums.TeamID.Default,
+        college=enums.College.Default,
+        conference=enums.Conference.Default,
+        country=enums.Country.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        division=enums.Division.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        player_experience=enums.PlayerExperience.Default,
+        player_position=enums.PlayerPosition.Default,
+        season_segment=enums.SeasonSegment.Default,
+        starter_bench=enums.StarterBench.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown.
     
@@ -94,22 +125,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'leaguedashteamstats'
+        endpoint = "leaguedashteamstats"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def team_lineups(self, team_id, game_id=enums.Default_Values.Blank, season=enums.Season.Default,
-                     season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                     group_quantity=enums.GroupQuantity.Default, measure_type=enums.MeasureType.Default,
-                     plus_minus=enums.PlusMinus.Default, pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                     date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                     game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters, outcome=enums.Outcome.Default,
-                     last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                     month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                     season_segment=enums.SeasonSegment.Default, conference=enums.Conference.Default,
-                     division=enums.Division.Default, vs_conference=enums.VsConference.Default,
-                     vs_division=enums.VsDivision.Default):
+    def team_lineups(
+        self,
+        team_id,
+        game_id=enums.Default_Values.Blank,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        group_quantity=enums.GroupQuantity.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        outcome=enums.Outcome.Default,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        season_segment=enums.SeasonSegment.Default,
+        conference=enums.Conference.Default,
+        division=enums.Division.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Top 250 team lineup combinations of specified group quantity, by minutes played descending.
     
@@ -172,22 +219,37 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashlineups'
+        endpoint = "teamdashlineups"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 1, 'resultSets')
+        df = self.process_response(r, 1, "resultSets")
         return df
 
-    def all_team_lineups(self, season=enums.Season.Default, season_type=enums.SeasonType.Default,
-                         per_mode=enums.PerMode.Default, group_quantity=enums.GroupQuantity.Default,
-                         measure_type=enums.MeasureType.Default, team_id=enums.TeamID.Default,
-                         plus_minus=enums.PlusMinus.Default, pace_adjust=enums.PaceAdjust.Default,
-                         rank=enums.Rank.Default, date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                         game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
-                         last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                         month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                         outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
-                         conference=enums.Conference.Default, division=enums.Division.Default,
-                         vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def all_team_lineups(
+        self,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        group_quantity=enums.GroupQuantity.Default,
+        measure_type=enums.MeasureType.Default,
+        team_id=enums.TeamID.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        season_segment=enums.SeasonSegment.Default,
+        conference=enums.Conference.Default,
+        division=enums.Division.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Top 250 team lineup combinations of specified group quantity, ranked by stat category.
     
@@ -243,26 +305,44 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'leaguedashlineups'
+        endpoint = "leaguedashlineups"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def all_shot_locations(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                           season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                           measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                           pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                           distance_range=enums.DistanceRange.Zone, shot_clock_range=enums.ShotClockRange.Default,
-                           game_scope=enums.GameScope.Blank, team_id=enums.TeamID.Default,
-                           conference=enums.Conference.Default, date_from=enums.DateFrom.Default,
-                           date_to=enums.DateTo.Default, division=enums.Division.Default,
-                           game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
-                           last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                           month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                           outcome=enums.Outcome.Default, po_round=enums.PORound.Default,
-                           player_experience=enums.PlayerExperience.Default, starter_bench=enums.StarterBench.Default,
-                           player_position=enums.PlayerPosition.Default, season_segment=enums.SeasonSegment.Default,
-                           vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def all_shot_locations(
+        self,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        distance_range=enums.DistanceRange.Zone,
+        shot_clock_range=enums.ShotClockRange.Default,
+        game_scope=enums.GameScope.Blank,
+        team_id=enums.TeamID.Default,
+        conference=enums.Conference.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        division=enums.Division.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        player_experience=enums.PlayerExperience.Default,
+        starter_bench=enums.StarterBench.Default,
+        player_position=enums.PlayerPosition.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team shot stats breakdown, default broken down by shot category.
     
@@ -333,26 +413,43 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'leaguedashteamshotlocations'
+        endpoint = "leaguedashteamshotlocations"
         r = self.request(endpoint, params)
         df = pd.DataFrame(
-            data=r.get('resultSets').get('rowSet'), columns=r.get('resultSets').get('headers')[1].get('columnNames')
+            data=r.get("resultSets").get("rowSet"),
+            columns=r.get("resultSets").get("headers")[1].get("columnNames"),
         )
         return df
 
-    def all_shot_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                       season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                       close_def_dist_range=enums.CloseDefDistRange.Default, dribble_range=enums.DribbleRange.All,
-                       shot_clock_range=enums.ShotClockRange.Default, shot_dist_range=enums.Default_Values.Blank,
-                       touch_time_range=enums.Default_Values.Blank, general_range=enums.Default_Values.Blank,
-                       team_id=enums.TeamID.Default, conference=enums.Conference.Default,
-                       date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, division=enums.Division.Default,
-                       game_segment=enums.GameSegment.Default, period=enums.Period.Default,
-                       last_n_games=enums.LastNGames.Default, po_round=enums.PORound.Default,
-                       location=enums.Location.Default, month=enums.Month.Default,
-                       opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                       season_segment=enums.SeasonSegment.Default, vs_conference=enums.VsConference.Default,
-                       vs_division=enums.VsDivision.Default):
+    def all_shot_stats(
+        self,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        close_def_dist_range=enums.CloseDefDistRange.Default,
+        dribble_range=enums.DribbleRange.All,
+        shot_clock_range=enums.ShotClockRange.Default,
+        shot_dist_range=enums.Default_Values.Blank,
+        touch_time_range=enums.Default_Values.Blank,
+        general_range=enums.Default_Values.Blank,
+        team_id=enums.TeamID.Default,
+        conference=enums.Conference.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        division=enums.Division.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.Default,
+        last_n_games=enums.LastNGames.Default,
+        po_round=enums.PORound.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team shot stats breakdown.
     
@@ -413,24 +510,40 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'leaguedashteamptshot'
+        endpoint = "leaguedashteamptshot"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def all_opponent_shot_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                                season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                                close_def_dist_range=enums.CloseDefDistRange.Default, dribble_range=enums.DribbleRange.All,
-                                shot_clock_range=enums.ShotClockRange.Default, shot_dist_range=enums.Default_Values.Blank,
-                                touch_time_range=enums.Default_Values.Blank, general_range=enums.Default_Values.Blank,
-                                team_id=enums.TeamID.Default, conference=enums.Conference.Default,
-                                date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default, division=enums.Division.Default,
-                                game_segment=enums.GameSegment.Default, period=enums.Period.Default,
-                                last_n_games=enums.LastNGames.Default, po_round=enums.PORound.Default,
-                                location=enums.Location.Default, month=enums.Month.Default,
-                                opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                                season_segment=enums.SeasonSegment.Default, vs_conference=enums.VsConference.Default,
-                                vs_division=enums.VsDivision.Default):
+    def all_opponent_shot_stats(
+        self,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        close_def_dist_range=enums.CloseDefDistRange.Default,
+        dribble_range=enums.DribbleRange.All,
+        shot_clock_range=enums.ShotClockRange.Default,
+        shot_dist_range=enums.Default_Values.Blank,
+        touch_time_range=enums.Default_Values.Blank,
+        general_range=enums.Default_Values.Blank,
+        team_id=enums.TeamID.Default,
+        conference=enums.Conference.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        division=enums.Division.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.Default,
+        last_n_games=enums.LastNGames.Default,
+        po_round=enums.PORound.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team opponent shot stats breakdown.
 
@@ -490,22 +603,36 @@ class Team(BaseEndpoint):
         :rtype: DataFrame
         """
         params = clean_locals(locals())
-        endpoint = 'leaguedashoppptshot'
+        endpoint = "leaguedashoppptshot"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def all_defensive_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                            season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                            defense_category=enums.DefenseCategory.Default, conference=enums.Conference.Default,
-                            date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                            division=enums.Division.Default, game_scope=enums.GameScope.Default,
-                            team_id=enums.TeamID.Default, game_segment=enums.GameSegment.Default,
-                            period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                            location=enums.Location.Default, month=enums.Month.Default,
-                            opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                            po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                            vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def all_defensive_stats(
+        self,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        defense_category=enums.DefenseCategory.Default,
+        conference=enums.Conference.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        division=enums.Division.Default,
+        game_scope=enums.GameScope.Default,
+        team_id=enums.TeamID.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team defensive stats breakdown.
     
@@ -558,26 +685,46 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'leaguedashptdefend'
+        endpoint = "leaguedashptdefend"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def all_clutch_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                         season_type=enums.SeasonType.Default, clutch_time=enums.ClutchTime.mins5,
-                         ahead_behind=enums.AheadBehind.Default, point_diff=100, game_scope=enums.GameScope.Blank,
-                         player_experience=enums.PlayerExperience.Default, player_position=enums.PlayerPosition.Default,
-                         starter_bench=enums.StarterBench.Default, measure_type=enums.MeasureType.Default,
-                         per_mode=enums.PerMode.Default, plus_minus=enums.PlusMinus.Default,
-                         pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default, outcome=enums.Outcome.Default,
-                         location=enums.Location.Default, month=enums.Month.Default,
-                         season_segment=enums.SeasonSegment.Default, date_from=enums.DateFrom.Default,
-                         date_to=enums.DateTo.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                         vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default,
-                         game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
-                         last_n_games=enums.LastNGames.Default, conference=enums.Conference.Default,
-                         division=enums.Division.Default, team_id=enums.TeamID.Default, po_round=enums.PORound.Default,
-                         shot_clock_range=enums.ShotClockRange.Default):
+    def all_clutch_stats(
+        self,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        clutch_time=enums.ClutchTime.mins5,
+        ahead_behind=enums.AheadBehind.Default,
+        point_diff=100,
+        game_scope=enums.GameScope.Blank,
+        player_experience=enums.PlayerExperience.Default,
+        player_position=enums.PlayerPosition.Default,
+        starter_bench=enums.StarterBench.Default,
+        measure_type=enums.MeasureType.Default,
+        per_mode=enums.PerMode.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        outcome=enums.Outcome.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        season_segment=enums.SeasonSegment.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        conference=enums.Conference.Default,
+        division=enums.Division.Default,
+        team_id=enums.TeamID.Default,
+        po_round=enums.PORound.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+    ):
         """
         Team clutch stats breakdown.
     
@@ -650,24 +797,41 @@ class Team(BaseEndpoint):
     
          """
         params = clean_locals(locals())
-        endpoint = 'leaguedashteamclutch'
+        endpoint = "leaguedashteamclutch"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def all_hustle_stats(self, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                         season_type=enums.SeasonType.Default, game_scope=enums.GameScope.Blank,
-                         player_experience=enums.PlayerExperience.Default, player_position=enums.PlayerPosition.Default,
-                         per_mode=enums.PerMode.Default, plus_minus=enums.PlusMinus.Default,
-                         pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default, outcome=enums.Outcome.Default,
-                         location=enums.Location.Default, month=enums.Month.Default,
-                         season_segment=enums.SeasonSegment.Default, date_from=enums.DateFrom.Default,
-                         date_to=enums.DateTo.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                         vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default,
-                         game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
-                         last_n_games=enums.LastNGames.Default, conference=enums.Conference.Default,
-                         division=enums.Division.Default, team_id=enums.TeamID.Default, po_round=enums.PORound.Default,
-                         shot_clock_range=enums.ShotClockRange.Default):
+    def all_hustle_stats(
+        self,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        game_scope=enums.GameScope.Blank,
+        player_experience=enums.PlayerExperience.Default,
+        player_position=enums.PlayerPosition.Default,
+        per_mode=enums.PerMode.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        outcome=enums.Outcome.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        season_segment=enums.SeasonSegment.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        conference=enums.Conference.Default,
+        division=enums.Division.Default,
+        team_id=enums.TeamID.Default,
+        po_round=enums.PORound.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+    ):
         """
         Team clutch stats breakdown.
 
@@ -730,19 +894,30 @@ class Team(BaseEndpoint):
 
          """
         params = clean_locals(locals())
-        endpoint = 'leaguehustlestatsteam'
+        endpoint = "leaguehustlestatsteam"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-
-    def team_passing_stats(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                           season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                           date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                           last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                           month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                           outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
-                           vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_passing_stats(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team pass stats breakdown by received|made.
     
@@ -790,19 +965,32 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashptpass'
+        endpoint = "teamdashptpass"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_rebounding_stats(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                              season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                              date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                              game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
-                              last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                              month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                              outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
-                              vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_rebounding_stats(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team rebounding stats breakdown by shot|shot distance|rebound distance|contest or overall.
     
@@ -857,19 +1045,32 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashptreb'
+        endpoint = "teamdashptreb"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_shooting_stats(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                            season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                            date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                            game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
-                            last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                            month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                            outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
-                            vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_shooting_stats(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team shot success stats breakdown.
     
@@ -928,23 +1129,40 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashptshots'
+        endpoint = "teamdashptshots"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_vs_player(self, team_id, vs_player_id, idx_data, league_id=enums.LeagueID.Default,
-                       season=enums.Season.Default, season_type=enums.SeasonType.Default,
-                       per_mode=enums.PerMode.Default, measure_type=enums.MeasureType.Default,
-                       plus_minus=enums.PlusMinus.Default, pace_adjust=enums.PaceAdjust.Default,
-                       rank=enums.Rank.Default, shot_clock_range=enums.ShotClockRange.Default,
-                       date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                       game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
-                       last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                       month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                       outcome=enums.Outcome.Default, conference=enums.Conference.Default,
-                       division=enums.Division.Default, season_segment=enums.SeasonSegment.Default,
-                       vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_vs_player(
+        self,
+        team_id,
+        vs_player_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        conference=enums.Conference.Default,
+        division=enums.Division.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown vs specific player by player on|off court, shot distance and shot area.
     
@@ -1019,22 +1237,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamvsplayer'
+        endpoint = "teamvsplayer"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_clutch_stats(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                          season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                          measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                          pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                          shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                          date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                          period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                          location=enums.Location.Default, month=enums.Month.Default,
-                          opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                          po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                          vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_clutch_stats(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team clutch stats breakdown.
     
@@ -1107,22 +1341,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashboardbyclutch'
+        endpoint = "teamdashboardbyclutch"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_game_splits(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                         season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                         measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                         pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                         shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                         date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                         period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                         location=enums.Location.Default, month=enums.Month.Default,
-                         opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                         po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                         vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_game_splits(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown by score bucket|period|half or overall.
     
@@ -1189,22 +1439,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashboardbygamesplits'
+        endpoint = "teamdashboardbygamesplits"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_breakdown(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                       season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                       measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                       pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                       shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                       date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                       period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                       location=enums.Location.Default, month=enums.Month.Default,
-                       opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                       po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                       vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_breakdown(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown by score bucket|period|half or overall.
     
@@ -1273,22 +1539,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashboardbygeneralsplits'
+        endpoint = "teamdashboardbygeneralsplits"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_recent_games(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                          season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                          measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                          pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                          shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                          date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                          period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                          location=enums.Location.Default, month=enums.Month.Default,
-                          opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                          po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                          vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_recent_games(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown by pre defined number of most recent games or overall.
     
@@ -1356,22 +1638,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashboardbylastngames'
+        endpoint = "teamdashboardbylastngames"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_by_opponent(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                         season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                         measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                         pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                         shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                         date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                         period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                         location=enums.Location.Default, month=enums.Month.Default,
-                         opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                         po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                         vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_by_opponent(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown by opponent or overall.
     
@@ -1437,22 +1735,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashboardbyopponent'
+        endpoint = "teamdashboardbyopponent"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_by_shot_type(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                          season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                          measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                          pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                          shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                          date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                          period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                          location=enums.Location.Default, month=enums.Month.Default,
-                          opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                          po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                          vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_by_shot_type(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown by shot type, zone and distance or overall.
     
@@ -1521,22 +1835,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashboardbyshootingsplits'
+        endpoint = "teamdashboardbyshootingsplits"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_by_performance(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                            season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                            measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                            pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                            shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                            date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                            period=enums.Period.AllQuarters, last_n_games=enums.LastNGames.Default,
-                            location=enums.Location.Default, month=enums.Month.Default,
-                            opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                            po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                            vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_by_performance(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown by team performance or overall.
     
@@ -1602,21 +1932,38 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashboardbyteamperformance'
+        endpoint = "teamdashboardbyteamperformance"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_by_year(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                     season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                     measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                     pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default, period=enums.Period.AllQuarters,
-                     shot_clock_range=enums.ShotClockRange.Default, date_from=enums.DateFrom.Default,
-                     date_to=enums.DateTo.Default, game_segment=enums.GameSegment.Default,
-                     last_n_games=enums.LastNGames.Default, location=enums.Location.Default, month=enums.Month.Default,
-                     opponent_team_id=enums.OpponentTeamID.Default, outcome=enums.Outcome.Default,
-                     po_round=enums.PORound.Default, season_segment=enums.SeasonSegment.Default,
-                     vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_by_year(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        period=enums.Period.AllQuarters,
+        shot_clock_range=enums.ShotClockRange.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        po_round=enums.PORound.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats breakdown by year or overall.
     
@@ -1680,13 +2027,18 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamdashboardbyyearoveryear'
+        endpoint = "teamdashboardbyyearoveryear"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def team_by_season(self, team_id, league_id=enums.LeagueID.Default, season_type=enums.SeasonType.Default,
-                       per_mode=enums.PerMode.Default):
+    def team_by_season(
+        self,
+        team_id,
+        league_id=enums.LeagueID.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+    ):
         """
         Team stats breakdown by season.
     
@@ -1703,13 +2055,19 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamyearbyyearstats'
+        endpoint = "teamyearbyyearstats"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def team_game_logs(self, team_id, season=enums.Season.Current, season_type=enums.SeasonType.Default,
-                       date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default):
+    def team_game_logs(
+        self,
+        team_id,
+        season=enums.Season.Current,
+        season_type=enums.SeasonType.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+    ):
         """
         Team game logs.
     
@@ -1728,21 +2086,36 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamgamelogs'
+        endpoint = "teamgamelogs"
         r = self.request(endpoint, params)
-        df = self.process_response(r, 0, 'resultSets')
+        df = self.process_response(r, 0, "resultSets")
         return df
 
-    def team_player_on_off(self, team_id, idx_data, league_id=enums.LeagueID.Default, season=enums.Season.Default,
-                           season_type=enums.SeasonType.Default, per_mode=enums.PerMode.Default,
-                           measure_type=enums.MeasureType.Default, plus_minus=enums.PlusMinus.Default,
-                           pace_adjust=enums.PaceAdjust.Default, rank=enums.Rank.Default,
-                           date_from=enums.DateFrom.Default, date_to=enums.DateTo.Default,
-                           game_segment=enums.GameSegment.Default, period=enums.Period.AllQuarters,
-                           last_n_games=enums.LastNGames.Default, location=enums.Location.Default,
-                           month=enums.Month.Default, opponent_team_id=enums.OpponentTeamID.Default,
-                           outcome=enums.Outcome.Default, season_segment=enums.SeasonSegment.Default,
-                           vs_conference=enums.VsConference.Default, vs_division=enums.VsDivision.Default):
+    def team_player_on_off(
+        self,
+        team_id,
+        idx_data,
+        league_id=enums.LeagueID.Default,
+        season=enums.Season.Default,
+        season_type=enums.SeasonType.Default,
+        per_mode=enums.PerMode.Default,
+        measure_type=enums.MeasureType.Default,
+        plus_minus=enums.PlusMinus.Default,
+        pace_adjust=enums.PaceAdjust.Default,
+        rank=enums.Rank.Default,
+        date_from=enums.DateFrom.Default,
+        date_to=enums.DateTo.Default,
+        game_segment=enums.GameSegment.Default,
+        period=enums.Period.AllQuarters,
+        last_n_games=enums.LastNGames.Default,
+        location=enums.Location.Default,
+        month=enums.Month.Default,
+        opponent_team_id=enums.OpponentTeamID.Default,
+        outcome=enums.Outcome.Default,
+        season_segment=enums.SeasonSegment.Default,
+        vs_conference=enums.VsConference.Default,
+        vs_division=enums.VsDivision.Default,
+    ):
         """
         Team stats details breakdown by player when on|off court.
     
@@ -1803,9 +2176,9 @@ class Team(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'teamplayeronoffdetails'
+        endpoint = "teamplayeronoffdetails"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
     def franchise_history(self, idx_data, league_id=enums.LeagueID.Default):
@@ -1828,13 +2201,19 @@ class Team(BaseEndpoint):
 
         """
         params = clean_locals(locals())
-        endpoint = 'franchisehistory'
+        endpoint = "franchisehistory"
         r = self.request(endpoint, params)
-        df = self.process_response(r, idx_data, 'resultSets')
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
-    def all_by_play_type(self, category=enums.PlayType.Default, names=enums.SynergyName.Offense, q=2504502,
-                         season=enums.Season.Current.split('-')[0], season_type=enums.SynergySeasonType.Regular):
+    def all_by_play_type(
+        self,
+        category=enums.PlayType.Default,
+        names=enums.SynergyName.Offense,
+        q=2504502,
+        season=enums.Season.Current.split("-")[0],
+        season_type=enums.SynergySeasonType.Regular,
+    ):
         """
         Breakdown of teams stats on a specific play type, play types defined by synergy data.
         
@@ -1852,7 +2231,7 @@ class Team(BaseEndpoint):
         :rtype: DataFrame
         """
         params = clean_locals(locals())
-        url = r'http://stats-prod.nba.com/wp-json/statscms/v1/synergy/team/'
+        url = r"http://stats-prod.nba.com/wp-json/statscms/v1/synergy/team/"
         r = self.request(None, params, request_url=url)
-        df = pd.DataFrame(r.get('results', []))
+        df = pd.DataFrame(r.get("results", []))
         return df

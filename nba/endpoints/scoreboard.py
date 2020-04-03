@@ -1,12 +1,12 @@
-
 from nba import enums
 from nba.utils import clean_locals
 from nba.endpoints.baseendpoint import BaseEndpoint
 
 
 class Scoreboard(BaseEndpoint):
-
-    def scoreboard(self, game_date, idx_data, day_off_set=0, league_id=enums.LeagueID.Default):
+    def scoreboard(
+        self, game_date, idx_data, day_off_set=0, league_id=enums.LeagueID.Default
+    ):
         """
         Get the scoreboard and game data from a give date/date with offset.
     
@@ -38,9 +38,9 @@ class Scoreboard(BaseEndpoint):
     
         """
         params = clean_locals(locals())
-        endpoint = 'scoreboardV2'
-        r = self.request(endpoint, params, referer='scores')
-        df = self.process_response(r, idx_data, 'resultSets')
+        endpoint = "scoreboardV2"
+        r = self.request(endpoint, params, referer="scores")
+        df = self.process_response(r, idx_data, "resultSets")
         return df
 
     #

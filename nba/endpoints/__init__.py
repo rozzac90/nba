@@ -1,4 +1,3 @@
-
 from .boxscores import Boxscores
 from .common import Common
 from .draft import Draft

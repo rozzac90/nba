@@ -1,10 +1,8 @@
-
 from nba.baseclient import BaseClient
 from nba import endpoints
 
 
 class APIClient(BaseClient):
-
     def __init__(self):
         super(APIClient, self).__init__()
 
