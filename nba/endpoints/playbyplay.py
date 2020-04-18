@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 
 from nba import enums
 from nba.utils import clean_locals, check_status_code
@@ -40,7 +41,6 @@ class PlayByPlay(BaseEndpoint):
         :param period: 
         :return: 
         """
-        params = clean_locals(locals())
         response = requests.get(
             "http://uk.global.nba.com/stats2/game/playbyplay.json",
             {"gameId": game_id, "locale": locale, "period": period},
@@ -51,4 +51,4 @@ class PlayByPlay(BaseEndpoint):
             for period in response.json().get("payload", {}).get("playByPlays", {})
             for events in period.get("events", [])
         ]
-        return data[::-1]
+        return pd.DataFrame(data[::-1])

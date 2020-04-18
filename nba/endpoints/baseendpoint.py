@@ -39,7 +39,6 @@ class BaseEndpoint(object):
         response = session.get(
             request_url, params=params, data=json.dumps(data), headers=headers
         )
-        print(response.content)
         if response.status_code == 400:
             response = session.get(
                 request_url, params=params, data=json.dumps(data), headers=headers
